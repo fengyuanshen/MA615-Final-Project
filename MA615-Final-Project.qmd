@@ -13,13 +13,162 @@ editor: visual
 ```{r echo=FALSE}
 library(tidyverse)
 library(shiny)
+library(leaflet)
+library(leaflet.extras)
 ```
 
-找别人的画好的地图，用他们的数据
+## General description
+
+### Map of the island state
+
+micronesia一共有四个state: Chuuk Kosrae Pohnpei Yap, 可以做一个下拉菜单显示他们
+
+#### Pohnpei
 
 ```{r}
+# Set the coordinates
+micronesia_Pohnpei <- c(6.8874, 158.2150)
 
+# Create map
+micronesia_Pohnpei_map <- leaflet() |>
+  # Add base layer
+  addProviderTiles(providers$OpenStreetMap) |> 
+  # Set the view and zoom level
+  setView(lng = micronesia_Pohnpei[2], lat = micronesia_Pohnpei[1], zoom = 11) |>
+  # Add a marker with a popup
+  addMarkers(lng = micronesia_Pohnpei[2], lat = micronesia_Pohnpei[1], 
+             popup = "State: Pohnpei<br>State Capital: Kolonia<br>Administrative Capital: Palikir") |> 
+  # Add a label marker
+  addLabelOnlyMarkers(lng = micronesia_Pohnpei[2], lat = micronesia_Pohnpei[1],
+                      label = "State: Pohnpei, Administrative Capital: Palikir",
+                      labelOptions = labelOptions(noHide = TRUE,
+                                                  direction = 'auto',
+                                                  offset = c(-100, -10)))
+
+micronesia_Pohnpei_map
 ```
+
+#### Chuuk
+
+```{r}
+# Set the coordinates
+micronesia_Chuuk <- c(7.4500, 151.8500)
+
+# Create map
+micronesia_Chuuk_map <- leaflet() |>
+  # Add base layer
+  addProviderTiles(providers$OpenStreetMap) |> 
+  # Set the view and zoom level
+  setView(lng = micronesia_Chuuk[2], lat = micronesia_Chuuk[1], zoom = 11) |>
+  # Add a marker with a popup
+  addMarkers(lng = micronesia_Chuuk[2], lat = micronesia_Chuuk[1], 
+             popup = "State: Chuuk<br>Capital: Weno") |> 
+  # Add a label marker
+  addLabelOnlyMarkers(lng = micronesia_Chuuk[2], lat = micronesia_Chuuk[1],
+                      label = "State: Chuuk, Capital: Weno",
+                      labelOptions = labelOptions(noHide = TRUE,
+                                                  direction = 'auto',
+                                                  offset = c(-20, 0)))
+
+micronesia_Chuuk_map
+```
+
+#### Kosrae
+
+```{r}
+# Set the coordinates
+micronesia_Kosrae <- c(5.3258, 163.0086)
+
+# Create map
+micronesia_Kosrae_map <- leaflet() |>
+  # Add base layer
+  addProviderTiles(providers$OpenStreetMap) |> 
+  # Set the view and zoom level
+  setView(lng = micronesia_Kosrae[2], lat = micronesia_Kosrae[1], zoom = 11) |>
+  # Add a marker with a popup
+  addMarkers(lng = micronesia_Kosrae[2], lat = micronesia_Kosrae[1], 
+             popup = "State: Kosrae<br>Capital: Tofol") |> 
+  # Add a label marker
+  addLabelOnlyMarkers(lng = micronesia_Kosrae[2], lat = micronesia_Kosrae[1],
+                      label = "State: Kosrae, Capital: Tofol",
+                      labelOptions = labelOptions(noHide = TRUE,
+                                                  direction = 'right',
+                                                  offset = c(40, -10)))
+
+micronesia_Kosrae_map
+```
+
+#### Yap
+
+```{r}
+# Set the coordinates
+micronesia_Yap <- c(9.5167, 138.1333)
+
+# Create map
+micronesia_Yap_map <- leaflet() |>
+  # Add base layer
+  addProviderTiles(providers$OpenStreetMap) |> 
+  # Set the view and zoom level
+  setView(lng = micronesia_Yap[2], lat = micronesia_Yap[1], zoom = 11) |>
+  # Add a marker with a popup
+  addMarkers(lng = micronesia_Yap[2], lat = micronesia_Yap[1], 
+             popup = "State: Yap<br>Capital: Colonia") |> 
+  # Add a label marker
+  addLabelOnlyMarkers(lng = micronesia_Yap[2], lat = micronesia_Yap[1],
+                      label = "State: Yap, Capital: Colonia",
+                      labelOptions = labelOptions(noHide = TRUE,
+                                                  direction = 'auto',
+                                                  offset = c(-90, -10)))
+
+micronesia_Yap_map
+```
+
+Palikir is the capital city of the Federated States of Micronesia located in the western Pacific Ocean. A town of slightly under 5,000 residents, it is part of the larger Sokehs municipality, which had a population of 6,647 as of 2010, out of the nation's total population of 106,487. It is situated on the northwest side of Pohnpei island (population 34,789), a high volcanic island surrounded by a fringing coral reef. Nearby to the northeast is the island's largest settlement, the coastal town of Kolonia. It was declared the capital of Micronesia in 1989.
+
+### Map showing the location of the island state in the world
+
+```{r}
+# Set the coordinates
+micronesia_Pohnpei <- c(6.8874, 158.2150)
+micronesia_Chuuk <- c(7.4500, 151.8500)
+micronesia_Kosrae <- c(5.3258, 163.0086)
+micronesia_Yap <- c(9.5167, 138.1333)
+
+# Create map
+micronesia_map_world <- leaflet() |> 
+  addProviderTiles(providers$Esri.NatGeoWorldMap) |> 
+  setView(lng = micronesia_Chuuk[2], lat = micronesia_Chuuk[1], zoom = 3) |> 
+  addCircles(lng = micronesia_Pohnpei[2], lat = micronesia_Pohnpei[1],
+             radius = 650000, color = '#D90429', fillColor = '#D90429',
+             fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
+             popup = "Pohnpei") %>%
+  addCircles(lng = micronesia_Chuuk[2], lat = micronesia_Chuuk[1],
+             radius = 550000, color = '#134074', fillColor = '#134074',
+             fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
+             popup = "Chuuk") %>%
+  addCircles(lng = micronesia_Kosrae[2], lat = micronesia_Kosrae[1],
+             radius = 450000, color = '#386641', fillColor = '#386641',
+             fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
+             popup = "Kosrae") %>%
+  addCircles(lng = micronesia_Yap[2], lat = micronesia_Yap[1],
+             radius = 500000, color = '#F9C80E', fillColor = '#F9C80E',
+             fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
+             popup = "Yap")
+
+micronesia_map_world
+```
+
+### Key facts about the island state
+
+### A brief narrative description of the island state
+
+## Key demographics
+
+## Comparison of the Island State relative to other island states in the same region
+
+## SWOT analysis of the Island State
+
+## Reference
 
 ### **1. 岛屿国家的一般描述**
 
@@ -44,12 +193,7 @@ library(shiny)
 ### **3. 与同一地区的其他岛屿国家比较**
 
 -   选择几个与密克罗尼西亚地理或经济条件相似的岛屿国家进行比较。
-
-```{=html}
-<!-- -->
-```
 -   **数据比较**：
-
     -   收集有关这些岛屿的相似数据，如GDP、教育水平、医疗设施等。
 
     -   使用R创建比较图表，如散点图或直方图。
