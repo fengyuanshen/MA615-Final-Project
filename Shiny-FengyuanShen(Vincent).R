@@ -11,6 +11,12 @@ micronesia_data <- read_csv("data/API_FSM_DS2_en_csv_v2_6235080.csv", skip = 4)
 
 ui <- shinyUI(fluidPage(
   titlePanel("Micronesia Island State Analysis"),
+  # Add my name and Github link
+  div(style = "margin-bottom: 20px;",    # Add some space below the author line
+      h4("Author: Fengyuan (Vincent) Shen. All the code can be accessed through my ",
+         a("Github Repository", href = "https://github.com/fengyuanshen/MA615-Final-Project", target = "_blank")
+      )
+  ),
   
   navbarPage(
     title = "", 
@@ -54,13 +60,6 @@ ui <- shinyUI(fluidPage(
     tabPanel("Comparison with Other Regional Island States"),
     tabPanel("SWOT Analysis"),
     tabPanel("Reference")
-  ),
-  
-  # Add my name
-  tags$footer(
-    tags$div(class = "text-center",
-             tags$p("Created by: Fengyuan Shen (Vincent)")
-    )
   )
 ))
 
@@ -381,7 +380,7 @@ server <- function(input, output) {
                # Create a demographic dataframe
                composition_data <- data.frame(
                  Group = c("Chuukese", "Pohnpeian", "Kosraean", "Yapese", 
-                           "Yap outer islands", "Asian", "Polynesian", "Other", "Unknown"),
+                           "Yap Outer Islands", "Asian", "Polynesian", "Other", "Unknown"),
                  Percentage = c(48.8, 24.2, 6.2, 5.2, 4.5, 1.8, 1.5, 6.4, 1.4)
                )
                
@@ -427,7 +426,7 @@ server <- function(input, output) {
                             Year >= input$yearRangeDemographics[1], Year <= input$yearRangeDemographics[2])
                    
                    ggplot(life_expectancy_data, aes(x = Year, y = Value)) +
-                     geom_line(color = "#006F57", linewidth = 1) +
+                     geom_line(color = "#0077B6", linewidth = 1) +
                      geom_point(color = "#CD1624", size = 2) +
                      labs(title = "Life Expectancy at Birth", 
                           y = "Life Expectancy (Years)", 

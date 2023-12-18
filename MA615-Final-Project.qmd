@@ -20,6 +20,8 @@ library(leaflet)
 library(leaflet.extras)
 library(treemap)
 library(treemapify)
+library(gt)
+library(gtExtras)
 ```
 
 ```{r}
@@ -323,7 +325,7 @@ ggplot(data = population_data, aes(x = Year)) +
 # Create a demographic dataframe
 composition_data <- data.frame(
   Group = c("Chuukese", "Pohnpeian", "Kosraean", "Yapese", 
-            "Yap outer islands", "Asian", "Polynesian", "Other", "Unknown"),
+            "Yap Outer Islands", "Asian", "Polynesian", "Other", "Unknown"),
   Percentage = c(48.8, 24.2, 6.2, 5.2, 4.5, 1.8, 1.5, 6.4, 1.4)
 )
 
@@ -373,7 +375,7 @@ life_expectancy_data <- long_data |>
                    filter(`Indicator Name` %in% 'Life expectancy at birth, total (years)')
 
 ggplot(life_expectancy_data, aes(x = Year, y = Value)) +
-  geom_line(color = "#006F57", linewidth = 1) +
+  geom_line(color = "#0077B6", linewidth = 1) +
   geom_point(color = "#CD1624", size = 2) +
   labs(title = "Life Expectancy at Birth", 
        y = "Life Expectancy (Years)", 
@@ -387,13 +389,79 @@ ggplot(life_expectancy_data, aes(x = Year, y = Value)) +
 
 ## Comparison with Other Regional Island States
 
-随便找几个周边的国家，然后对比GDP，人均GDP，人口，预期寿命，HDI（UNData选一些指标）
+Marshall Islands, Nauru, Palau
 
-用UnData网站里Micronesia区域的国家（选4个）来作对比
+我的想法是分为Social指标和economy指标，Social指标部分gt的table来展示，table下面放上各个国家和对应的国旗。economy部分则绘制图表比较GDP，人均GDP，进口额，出口额。共四张图，画在一起。
 
-这里使用table和graphs来展示
+```{r}
+# Create dataframe
+country_data <- data.frame(
+  Country = c("Micronesia, Fed. Sts.", "Marshall Islands", "Nauru", "Palau"),
+  Population = c(114164, 41569, 12668, 18055),
+  PopulationGrowth = c(0.9, -1.2, 1.2, 0.2),
+  PopDensity = c(166.1, 331.2, 543.6, 39.5),
+  NetMigration = c(-635.0, -1901, -66, 3),
+  LifeExpectancy = c(71, 65, 64, 69),
+  SexRatio = c(103.4, 104, 101.8, 106),
+  SurfaceArea = c(702, 181, 21, 459),
+  HumanDevelopmentIndex = c(0.628, 0.639, 0.72, 0.767),
+  CapitalCity = c("Palikir", "Majuro", "Yaren", "Ngerulmud"),
+  Currency = c("USD", "USD", "AUD", "USD")
+)
+
+# Use gt to generate a table
+gt_table <- gt(data = country_data) |> 
+  tab_header(
+    title = "Regional Island States: A Comparison of Social Indicators"
+  ) |> 
+  cols_label(
+    Country = "Country",
+    Population = "Population (2022)",
+    PopulationGrowth = "Population growth (annual %, 2022)",
+    PopDensity = "Pop. density (per km^2, 2021)",
+    NetMigration = "Net migration (2021)",
+    LifeExpectancy = "Life Expectancy at Birth, Total (years, 2021)",
+    SexRatio = "Sex ratio (male per 100 female, 2022)",
+    SurfaceArea = "Surface Area (km^2)",
+    HumanDevelopmentIndex = "Human Development Index (2021)",
+    CapitalCity = "Capital City",
+    Currency = "Currency"
+  ) |> 
+  # Adjust column
+  cols_width(
+    Country ~ px(170),
+    Population ~ px(100),
+    PopulationGrowth ~ px(170),
+    PopDensity ~ px(170),
+    NetMigration ~ px(110),
+    LifeExpectancy ~ px(200),
+    SexRatio ~ px(160),
+    SurfaceArea ~ px(130),
+    HumanDevelopmentIndex ~ px(170),
+    CapitalCity ~ px(100),
+    Currency ~ px(100)
+  ) |> 
+  tab_options(
+    row.striping.include_table_body = TRUE
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_body(columns = everything())
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = everything())
+  )
+gt_table
+```
+
+```{r}
+
+```
 
 ## SWOT Analysis
+
+SWOT分为四个二级菜单：可以插一堆图片，每个分析点都可以加图片
 
 ## Reference
 
