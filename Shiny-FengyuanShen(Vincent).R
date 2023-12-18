@@ -4,6 +4,7 @@ library(shiny)
 library(leaflet)
 library(leaflet.extras)
 library(treemap)
+library(treemapify)
 
 # Read the CSV file and skip the first 4 lines
 micronesia_data <- read_csv("data/API_FSM_DS2_en_csv_v2_6235080.csv", skip = 4)
@@ -28,17 +29,38 @@ ui <- shinyUI(fluidPage(
                tabPanel("Economic Characteristics of the Island State",
                         selectInput("selectedChart", "Choose a Chart", 
                                     choices = c("GDP and GDP Growth", "GDP Per Capita", "Export and Import")),
-                        sliderInput("yearRange", "Select Year Range", 
+                        sliderInput("yearRangeEconomic", "Select Year Range", 
                                     min = 1986, max = 2022, value = c(1986, 2022)),
                         plotOutput("selectedChartPlot")
                ),
                tabPanel("Overview of Political, Social, Cultural, and Environmental Aspects")
              )
     ),
-    tabPanel("Key Demographics"),
+    tabPanel("Key Demographics",
+             sidebarLayout(
+               sidebarPanel(
+                 radioButtons("selectedChartType", "Select Chart Type",
+                              choices = c("Population and its Growth Rate", 
+                                          "Demographic Composition", 
+                                          "Male vs Female", 
+                                          "Life Expectancy")),
+                 uiOutput("slider")
+               ),
+               mainPanel(
+                 plotOutput("demographicsPlot")
+               )
+             )
+    ),
     tabPanel("Comparison with Other Regional Island States"),
     tabPanel("SWOT Analysis"),
     tabPanel("Reference")
+  ),
+  
+  # Add my name
+  tags$footer(
+    tags$div(class = "text-center",
+             tags$p("Created by: Fengyuan Shen (Vincent)")
+    )
   )
 ))
 
@@ -182,7 +204,10 @@ server <- function(input, output) {
                              'Imports of goods and services (current US$)', 
                              'Exports of goods and services (current US$)', 
                              'Population, total', 'Population growth (annual %)', 
-                             'Travel services (% of commercial service exports)')
+                             'Travel services (% of commercial service exports)',
+                             'Population, female (% of total population)',
+                             'Population, male (% of total population)',
+                             'Life expectancy at birth, total (years)')
     
     # Filter data
     filtered_data <- micronesia_data |> 
@@ -194,19 +219,18 @@ server <- function(input, output) {
       pivot_longer(cols = `1986`:`2022`, names_to = "Year", values_to = "Value") |> 
       mutate(Year = as.numeric(Year))  # Convert year to numeric
     
-    # 根据用户选择的图表类型来选择数据和绘图逻辑
-    req(input$selectedChart)  # 确保选择了图表
+    # Select data and plotting logic based on the chart type chosen by the user
+    req(input$selectedChart)  # Make sure the chart is selected
     selected_data <- long_data |> 
-      filter(Year >= input$yearRange[1], Year <= input$yearRange[2])
+      filter(Year >= input$yearRangeEconomic[1], Year <= input$yearRangeEconomic[2])
     
-    # 使用 switch 语句来根据选择绘制不同的图表
+    # Use switch to draw different charts based on the selection
     switch(input$selectedChart,
            "GDP and GDP Growth" = {
              gdp_growth_data <- long_data |> 
                filter(`Indicator Name` %in% c('GDP (current US$)', 
                                               'GDP growth (annual %)'),
-                      Year >= input$yearRange[1], 
-                      Year <= input$yearRange[2])
+                      Year >= input$yearRangeEconomic[1], Year <= input$yearRangeEconomic[2])
              
              ggplot(data = gdp_growth_data, aes(x = Year)) +
                geom_col(data = filter(gdp_growth_data, `Indicator Name` == 'GDP (current US$)'),
@@ -236,8 +260,7 @@ server <- function(input, output) {
              gdp_per_capita_data <- long_data |> 
                filter(`Indicator Name` %in% c('GDP per capita (current US$)', 
                                               'GDP per capita growth (annual %)'),
-                      Year >= input$yearRange[1], 
-                      Year <= input$yearRange[2])
+                      Year >= input$yearRangeEconomic[1], Year <= input$yearRangeEconomic[2])
              
              ggplot(data = gdp_per_capita_data, aes(x = Year)) +
                geom_col(data = filter(gdp_per_capita_data, 
@@ -268,8 +291,7 @@ server <- function(input, output) {
              trade_data <- long_data |> 
                filter(`Indicator Name` %in% c('Imports of goods and services (current US$)',
                                               'Exports of goods and services (current US$)'),
-                      Year >= input$yearRange[1], 
-                      Year <= input$yearRange[2])
+                      Year >= input$yearRangeEconomic[1], Year <= input$yearRangeEconomic[2])
              
              ggplot(trade_data, aes(x = Year, y = Value / 10^6, fill = `Indicator Name`)) +
                geom_bar(stat = "identity", position = "stack") +
@@ -288,6 +310,136 @@ server <- function(input, output) {
            }
     )
   })
+  
+  # Sliding axis
+  output$slider <- renderUI({
+    if (input$selectedChartType %in% c("Population and its Growth Rate", 
+                                       "Male vs Female", 
+                                       "Life Expectancy")) {
+      sliderInput("yearRangeDemographics", "Select Year Range", 
+                  min = 1986, max = 2022, value = c(1986, 2022))
+    }
+  })
+  
+  # Render the chart according to the selection
+  output$demographicsPlot <- renderPlot({
+    
+    # A list of selected indicators
+    selected_indicators <- c('GDP (current US$)', 'GDP growth (annual %)', 
+                             'GDP per capita (current US$)', 
+                             'GDP per capita growth (annual %)',
+                             'Imports of goods and services (current US$)', 
+                             'Exports of goods and services (current US$)', 
+                             'Population, total', 'Population growth (annual %)', 
+                             'Travel services (% of commercial service exports)',
+                             'Population, female (% of total population)',
+                             'Population, male (% of total population)',
+                             'Life expectancy at birth, total (years)')
+    
+    # Filter data
+    filtered_data <- micronesia_data |> 
+      filter(`Indicator Name` %in% selected_indicators) |> 
+      select(-c(`Country Name`, `Country Code`, `Indicator Code`))
+    
+    # Convert data to long format
+    long_data <- filtered_data |> 
+      pivot_longer(cols = `1986`:`2022`, names_to = "Year", values_to = "Value") |> 
+      mutate(Year = as.numeric(Year))  # Convert year to numeric
+    
+    req(input$selectedChartType)
+    switch(input$selectedChartType,
+           "Population and its Growth Rate" = {
+             population_data <- long_data |> 
+               filter(`Indicator Name` %in% c('Population, total', 
+                                              'Population growth (annual %)'),
+                      Year >= input$yearRangeDemographics[1], Year <= input$yearRangeDemographics[2])
+             
+             ggplot(data = population_data, aes(x = Year)) +
+               geom_col(data = filter(population_data, `Indicator Name` == 'Population, total'), 
+                        aes(y = Value / 1000, fill = Value), color = "black") +
+               scale_fill_gradientn(colours = c("#D00000", "#DC2F02", "#F3722C", "#F9844A",
+                                                "#F9C74F", "#FFE347", "#90BE6D", "#4D908E",
+                                                "#43AA8B", "#006F57", "#277DA1", "#014F86"),
+                                    values = seq(0, 1, length.out = 15)) +
+               geom_line(data = filter(population_data, 
+                                       `Indicator Name` == 'Population growth (annual %)'), 
+                         aes(y = Value * 10 + 90), color = "#FFC300", linewidth = 1, group = 1) +
+               scale_y_continuous(sec.axis = sec_axis(~./10 - 9, 
+                                                      name = "Population Growth Rate (annual %)")) +
+               labs(
+                 title = "Population and Population Growth Rate Over Time", 
+                 x = "Year", y = "Total Population (thousand)"
+               ) +
+               theme_minimal() +
+               theme(
+                 plot.title = element_text(hjust = 0.5),
+                 axis.text.x = element_text(angle = 45, hjust = 1),
+                 legend.position = "none"
+               )
+           },
+             "Demographic Composition" = {
+               # Create a demographic dataframe
+               composition_data <- data.frame(
+                 Group = c("Chuukese", "Pohnpeian", "Kosraean", "Yapese", 
+                           "Yap outer islands", "Asian", "Polynesian", "Other", "Unknown"),
+                 Percentage = c(48.8, 24.2, 6.2, 5.2, 4.5, 1.8, 1.5, 6.4, 1.4)
+               )
+               
+               # Add a label with a percentage
+               composition_data$Label <- paste(composition_data$Group, "\n", 
+                                               round(composition_data$Percentage,2), "%", sep="")
+               
+               # Draw a treemap and add labels
+               ggplot(composition_data, aes(area = Percentage, fill = Group, label = Label)) +
+                 geom_treemap(colour = "black", size = 1.5) +
+                 geom_treemap_text(colour = "white", place = "centre", grow = FALSE, reflow = TRUE) +
+                 labs(title = "Population Composition by Ethnolinguistic Group") +
+                 theme_minimal() +
+                 theme(
+                   plot.title = element_text(size = 16, hjust = 0.5),
+                   legend.position = "none"
+                 ) +
+                 scale_fill_manual(values = c("#D00000", "#BB010B", "#F9844A", "#F9C74F", "#90BE6D",
+                                              "#43AA8B", "#277DA1", "#014F86", "#023E8A", "#03045E"))
+             },
+               "Male vs Female" = {
+                 proportion_data <- long_data |> 
+                   filter(`Indicator Name` %in% c('Population, female (% of total population)', 'Population, male (% of total population)'),
+                          Year >= input$yearRangeDemographics[1], Year <= input$yearRangeDemographics[2])
+                 
+                 ggplot(proportion_data, aes(x = Year, y = Value , fill = `Indicator Name`)) +
+                   geom_bar(stat = "identity", position = "stack") +
+                   scale_fill_manual(values = c('Population, male (% of total population)' = '#003566',
+                                                'Population, female (% of total population)' = '#D62828'),
+                                     name = "Gender", labels = c("Male Proportion", "Female Proportion")) +
+                   labs(
+                     title = "Male and Female Population Proportion",
+                     x = "Year", y = "Population Proportion (%)") +
+                   theme_minimal() +
+                   theme(
+                     plot.title = element_text(hjust = 0.5),
+                     axis.text.x = element_text(angle = 45, hjust = 1)
+                   )
+               },
+                 "Life Expectancy" = {
+                   life_expectancy_data <- long_data |> 
+                     filter(`Indicator Name` %in% 'Life expectancy at birth, total (years)',
+                            Year >= input$yearRangeDemographics[1], Year <= input$yearRangeDemographics[2])
+                   
+                   ggplot(life_expectancy_data, aes(x = Year, y = Value)) +
+                     geom_line(color = "#006F57", linewidth = 1) +
+                     geom_point(color = "#CD1624", size = 2) +
+                     labs(title = "Life Expectancy at Birth", 
+                          y = "Life Expectancy (Years)", 
+                          x = "Year") +
+                     theme_minimal() +
+                     theme(
+                       plot.title = element_text(hjust = 0.5),
+                       axis.text.x = element_text(angle = 45, hjust = 1)
+                     )
+                 }
+    )
+    })
   
   # 其他标签页的逻辑可以在这里添加
   
