@@ -3,6 +3,7 @@ library(ggplot2)
 library(shiny)
 library(leaflet)
 library(leaflet.extras)
+library(treemap)
 
 # Read the CSV file and skip the first 4 lines
 micronesia_data <- read_csv("data/API_FSM_DS2_en_csv_v2_6235080.csv", skip = 4)
@@ -21,17 +22,17 @@ ui <- shinyUI(fluidPage(
                         selectInput("stateSelect", "Select State", choices = c("Pohnpei", "Chuuk", "Kosrae", "Yap")),
                         leafletOutput("selectedStateMap")
                ),
-               tabPanel("Map Showing the Location of the Island State in the World", 
+               tabPanel("World Map Highlighting the Island State's Location", 
                         leafletOutput("worldMap")
                ),
-               tabPanel("Key Facts about the Island State",
+               tabPanel("Economic Characteristics of the Island State",
                         selectInput("selectedChart", "Choose a Chart", 
                                     choices = c("GDP and GDP Growth", "GDP Per Capita", "Export and Import")),
                         sliderInput("yearRange", "Select Year Range", 
                                     min = 1986, max = 2022, value = c(1986, 2022)),
                         plotOutput("selectedChartPlot")
                ),
-               tabPanel("A Brief Narrative Description of the Island State")
+               tabPanel("Overview of Political, Social, Cultural, and Environmental Aspects")
              )
     ),
     tabPanel("Key Demographics"),

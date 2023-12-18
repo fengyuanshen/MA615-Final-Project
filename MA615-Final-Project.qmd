@@ -10,12 +10,15 @@ editor: visual
 
 这里加一些Micronesia的图片（比如国旗），按照老头的要求
 
+这里是综述，比如国土面积，人口，语言，有几个州，人类发展指数之类的信息
+
 ```{r echo=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(shiny)
 library(leaflet)
 library(leaflet.extras)
+library(treemap)
 ```
 
 ```{r}
@@ -129,7 +132,7 @@ micronesia_Yap_map
 
 Palikir is the capital city of the Federated States of Micronesia located in the western Pacific Ocean. A town of slightly under 5,000 residents, it is part of the larger Sokehs municipality, which had a population of 6,647 as of 2010, out of the nation's total population of 106,487. It is situated on the northwest side of Pohnpei island (population 34,789), a high volcanic island surrounded by a fringing coral reef. Nearby to the northeast is the island's largest settlement, the coastal town of Kolonia. It was declared the capital of Micronesia in 1989.
 
-### Map showing the location of the island state in the world
+### World Map Highlighting the Island State's Location
 
 ```{r}
 # Set the coordinates
@@ -162,13 +165,7 @@ micronesia_map_world <- leaflet() |>
 micronesia_map_world
 ```
 
-### Key facts about the island state
-
-可以用world bank的数据。使用表格来展示
-
-### A brief narrative description of the island state
-
-可以用Wikipedia的数据
+### Economic Characteristics of the Island State
 
 ```{r}
 # A list of selected indicators
@@ -178,7 +175,10 @@ selected_indicators <- c('GDP (current US$)', 'GDP growth (annual %)',
                          'Imports of goods and services (current US$)', 
                          'Exports of goods and services (current US$)', 
                          'Population, total', 'Population growth (annual %)', 
-                         'Travel services (% of commercial service exports)')
+                         'Travel services (% of commercial service exports)',
+                         'Population, female (% of total population)',
+                         'Population, male (% of total population)',
+                         'Life expectancy at birth, total (years)')
 
 # Filter data
 filtered_data <- micronesia_data |> 
@@ -279,7 +279,13 @@ ggplot(trade_data, aes(x = Year, y = Value / 10^6, fill = `Indicator Name`)) +
       )
 ```
 
-#### Population
+### Overview of Political, Social, Cultural, and Environmental Aspects
+
+可以用Wikipedia的描述性语言，分类别描述
+
+## Key Demographics
+
+### Population and its Growth Rate
 
 ```{r}
 population_data <- long_data |> 
@@ -310,11 +316,82 @@ ggplot(data = population_data, aes(x = Year)) +
       )
 ```
 
-## Key Demographics
+### Demographic Composition
 
-## Comparison of the Island State relative to other island states in the same region
+The indigenous population of the nation, which is predominantly [Micronesian](https://en.wikipedia.org/wiki/Micronesians "Micronesians"), consists of various ethnolinguistic groups. It has a nearly 100% Pacific Islander and [Asian](https://en.wikipedia.org/wiki/Asian_people "Asian people") population: [Chuukese](https://en.wikipedia.org/wiki/Chuukese_people "Chuukese people") 48.8%, [Pohnpeian](https://en.wikipedia.org/wiki/Pohnpeian_language "Pohnpeian language") 24.2%, [Kosraean](https://en.wikipedia.org/wiki/Kosraean_language "Kosraean language") 6.2%, [Yapese](https://en.wikipedia.org/wiki/Yapese_people "Yapese people") 5.2%, [Yap](https://en.wikipedia.org/wiki/Yap "Yap") outer islands 4.5%, [Asian](https://en.wikipedia.org/wiki/Asian_ethnic_groups "Asian ethnic groups") 1.8%, [Polynesian](https://en.wikipedia.org/wiki/Polynesians "Polynesians") 1.5%, other 6.4%, unknown 1.4%. 这个用树形图
 
-随便找几个周边的国家，然后对比GDP，人口，教育水平，医疗设施等等因素
+```{r}
+# 创建人口构成的数据框
+composition_data <- data.frame(
+  Group = c("Chuukese", "Pohnpeian", "Kosraean", "Yapese", 
+            "Yap outer islands", "Asian", "Polynesian", "Other", "Unknown"),
+  Percentage = c(48.8, 24.2, 6.2, 5.2, 4.5, 1.8, 1.5, 6.4, 1.4)
+)
+
+# 绘制树形图
+treemap(
+  composition_data,
+  index = "Group",
+  vSize = "Percentage",
+  title = "Population Composition",
+  fontsize.labels = c(12, 10, 8),
+  fontcolor.labels = c("white", "white", "white"),
+  fontface.labels = c("bold", "bold", "bold"),
+  align.labels = list(
+    c("center", "center"),
+    c("left", "top"),
+    c("left", "bottom")
+  ),
+  overlap.labels = 0.5,
+  inflate.labels = F
+)
+```
+
+### Male vs Female
+
+```{r}
+proportion_data <- long_data |> 
+                   filter(`Indicator Name` %in% c('Population, female (% of total population)', 'Population, male (% of total population)'))
+
+ggplot(proportion_data, aes(x = Year, y = Value , fill = `Indicator Name`)) +
+    geom_bar(stat = "identity", position = "stack") +
+    scale_fill_manual(values = c('Population, male (% of total population)' = '#003566',
+                                 'Population, female (% of total population)' = '#D62828'),
+                      name = "Gender", labels = c("Male Proportion", "Female Proportion")) +
+    labs(
+      title = "Male and Female Population Proportion",
+      x = "Year", y = "Population Proportion (%)") +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 45, hjust = 1)
+      )
+```
+
+### Life expectancy
+
+```{r}
+life_expectancy_data <- long_data |> 
+                   filter(`Indicator Name` %in% 'Life expectancy at birth, total (years)')
+
+ggplot(life_expectancy_data, aes(x = Year, y = Value)) +
+  geom_line(color = "#006F57", linewidth = 1) +
+  geom_point(color = "#CD1624", size = 2) +
+  labs(title = "Life Expectancy at Birth", 
+       y = "Life Expectancy (Years)", 
+       x = "Year") +
+  theme_minimal() +
+  theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 45, hjust = 1)
+      )
+```
+
+## Comparison with Other Regional Island States
+
+随便找几个周边的国家，然后对比GDP，人均GDP，人口，预期寿命，HDI（UNData选一些指标）
+
+用UnData网站里Micronesia区域的国家（选4个）来作对比
 
 这里使用table和graphs来展示
 
@@ -322,38 +399,10 @@ ggplot(data = population_data, aes(x = Year)) +
 
 ## Reference
 
-### **1. 岛屿国家的一般描述**
-
--   **地图展示**：
-
-    -   使用R的**`ggplot2`**包或**`leaflet`**包来创建密克罗尼西亚的地图。
-
-    -   展示密克罗尼西亚在世界地图上的位置，可以使用**`maps`**包。
-
--   **关键事实和描述**：
-
-    -   通过研究，整理关于密克罗尼西亚的基本信息，如历史、地理、文化等。
-
-    -   可以在一张图表里绘制所有数据，然后画一个可以设置年份的轴
-
-### **2. 关键人口统计信息**
-
--   收集并展示关于人口规模、人口密度、城市化程度等数据。
-
--   可以使用图表来呈现这些数据，例如用**`ggplot2`**创建条形图或饼图。
-
-### **3. 与同一地区的其他岛屿国家比较**
-
--   选择几个与密克罗尼西亚地理或经济条件相似的岛屿国家进行比较。
--   **数据比较**：
-    -   收集有关这些岛屿的相似数据，如GDP、教育水平、医疗设施等。
-
-    -   使用R创建比较图表，如散点图或直方图。
-
 ### **4. SWOT分析**
 
 -   **分析密克罗尼西亚的优势、劣势、机会和威胁**：
 
-    -   研究经济、环境、政治等方面。
+    -   研究经济、环境、政治等方面。比如进出口额占据GDP的比重
 
     -   这部分可能更多是叙述性的，但可以通过图表或图像来辅助展示。
