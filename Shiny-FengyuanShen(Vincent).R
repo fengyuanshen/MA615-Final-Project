@@ -5,6 +5,8 @@ library(leaflet)
 library(leaflet.extras)
 library(treemap)
 library(treemapify)
+library(gt)
+library(gtExtras)
 
 # Read the CSV file and skip the first 4 lines
 micronesia_data <- read_csv("data/API_FSM_DS2_en_csv_v2_6235080.csv", skip = 4)
@@ -57,7 +59,11 @@ ui <- shinyUI(fluidPage(
                )
              )
     ),
-    tabPanel("Comparison with Other Regional Island States"),
+    tabPanel("Comparison with Other Regional Island States",
+             selectInput("indicatorType", "Select Indicator Type for Comparison", 
+                         choices = c("Social Indicator", "Economy Indicator")),
+             uiOutput("indicatorDisplay")
+    ),
     tabPanel("SWOT Analysis"),
     tabPanel("Reference")
   )
@@ -428,9 +434,10 @@ server <- function(input, output) {
                    ggplot(life_expectancy_data, aes(x = Year, y = Value)) +
                      geom_line(color = "#0077B6", linewidth = 1) +
                      geom_point(color = "#CD1624", size = 2) +
-                     labs(title = "Life Expectancy at Birth", 
-                          y = "Life Expectancy (Years)", 
-                          x = "Year") +
+                     labs(
+                       title = "Life Expectancy at Birth", 
+                       x = "Year", y = "Life Expectancy (Years)"
+                       ) +
                      theme_minimal() +
                      theme(
                        plot.title = element_text(hjust = 0.5),
@@ -439,6 +446,180 @@ server <- function(input, output) {
                  }
     )
     })
+  
+
+  # 动态UI根据选择展示不同的内容
+  # Create dataframe
+  country_data <- data.frame(
+    Country = c("Micronesia, Fed. Sts.", "Marshall Islands", "Nauru", "Palau"),
+    Population = c(114164, 41569, 12668, 18055),
+    PopulationGrowth = c(0.9, -1.2, 1.2, 0.2),
+    PopDensity = c(166.1, 331.2, 543.6, 39.5),
+    NetMigration = c(-635.0, -1901, -66, 3),
+    LifeExpectancy = c(71, 65, 64, 69),
+    SexRatio = c(103.4, 104, 101.8, 106),
+    SurfaceArea = c(702, 181, 21, 459),
+    HumanDevelopmentIndex = c(0.628, 0.639, 0.72, 0.767),
+    CapitalCity = c("Palikir", "Majuro", "Yaren", "Ngerulmud"),
+    Currency = c("USD", "USD", "AUD", "USD")
+  )
+  
+  # Use gt to generate a table
+  gt_table <- gt(data = country_data) |> 
+    tab_header(
+      title = "Regional Island States: A Comparison of Social Indicators"
+    ) |> 
+    cols_label(
+      Country = "Country",
+      Population = "Population (2022)",
+      PopulationGrowth = "Population growth (annual %, 2022)",
+      PopDensity = "Pop. density (per km^2, 2021)",
+      NetMigration = "Net migration (2021)",
+      LifeExpectancy = "Life Expectancy at Birth, Total (years, 2021)",
+      SexRatio = "Sex ratio (male per 100 female, 2022)",
+      SurfaceArea = "Surface Area (km^2)",
+      HumanDevelopmentIndex = "Human Development Index (2021)",
+      CapitalCity = "Capital City",
+      Currency = "Currency"
+    ) |> 
+    # Adjust column
+    cols_width(
+      Country ~ px(170),
+      Population ~ px(100),
+      PopulationGrowth ~ px(170),
+      PopDensity ~ px(170),
+      NetMigration ~ px(110),
+      LifeExpectancy ~ px(200),
+      SexRatio ~ px(160),
+      SurfaceArea ~ px(130),
+      HumanDevelopmentIndex ~ px(170),
+      CapitalCity ~ px(100),
+      Currency ~ px(100)
+    ) |> 
+    tab_options(
+      row.striping.include_table_body = TRUE
+    ) |> 
+    tab_style(
+      style = cell_text(align = "center"),
+      locations = cells_body(columns = everything())
+    ) |> 
+    tab_style(
+      style = cell_text(align = "center"),
+      locations = cells_column_labels(columns = everything())
+    )
+  
+  flags <- c("flags/Flag_of_the_Federated_States_of_Micronesia.svg", 
+             "flags/Flag_of_the_Marshall_Islands.svg", "flags/Flag_of_Nauru.svg", "flags/Flag_of_Palau.svg")
+  
+  output$indicatorDisplay <- renderUI({
+    if(input$indicatorType == "Social Indicator") {
+      # 显示表格和图片
+      list(
+        gt::gt_output("socialTable"),  # 渲染gt表格
+        # 创建包含所有国旗图片的div，调整图片大小
+        tags$div(
+          style = "text-align: center; margin-bottom: 40px;",  # 添加样式使图片居中并添加底部间距
+          lapply(flags, function(flag) {
+            tags$img(src = flag, style = "height: 150px; margin: 10px; display: inline-block;")  # 调整高度和显示方式
+          }),
+          tags$p("The image above displays the national flags of four Pacific island nations. From left to right, they represent the Federated States of Micronesia, the Marshall Islands, Nauru, and Palau, each with its unique design and colors.",
+                 style = "text-align: center; font-size: 18px;")  # 文本居中
+        )
+      )
+    } else if(input$indicatorType == "Economy Indicator") {
+      # 显示图表
+      plot_output_list <- lapply(1:4, function(i) {
+        plotOutput(outputId = paste0("plot", i))
+      })
+      do.call(tags$div, c(plot_output_list, style = "display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 20px;"))
+    }
+  })
+  
+  # 生成社会指标表
+  output$socialTable <- gt::render_gt({
+    gt_table
+  })
+  
+  # Render a chart of economy indicators
+  # Create dataframe
+  countries <- c("Micronesia", "Marshall Islands", "Nauru", "Palau")
+  economy <- data.frame(
+    Country = rep(countries, each=3),
+    Year = rep(c("2010", "2015", "2021"), times=4),
+    GDP = c(297, 316, 414, 168, 181, 237, 59, 104, 133, 183, 279, 280),
+    GDP_Per_Capita = c(2885, 2906.5, 3640.4, 2986.1, 3159.2, 4038.2, 5924.8, 10050.4, 
+                       12350.9, 10219.9, 15784, 15572.5),
+    Exports = c(23, 40, 34, 17, 25, 23, 25, 61, 54, 12, 6, 7),
+    Imports = c(168, 160, 189, 76, 84, 72, 23, 109, 140, 107, 150, 216)
+  )
+  
+  # GDP Comparison
+  plot1 <- ggplot(economy, aes(x=Country, y=GDP, fill=Year)) +
+    geom_bar(stat="identity", position=position_dodge()) +
+    scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
+    geom_text(aes(label=GDP), vjust=-0.3, position=position_dodge(width=0.9), size=3.5) + 
+    labs(
+      title = "GDP Comparison", 
+      x = "", y = "GDP (million current US$)"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 0, hjust = 0.5)
+    )
+  
+  # GDP Per Capita Comparison
+  plot2 <- ggplot(economy, aes(x=Country, y=GDP_Per_Capita, fill=Year)) +
+    geom_bar(stat="identity", position=position_dodge()) +
+    scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
+    geom_text(aes(label=GDP_Per_Capita), position=position_dodge(width=0.9), 
+              vjust=0.5, hjust=1.2, size=3.5, angle=90, colour="white") +
+    labs(
+      title = "GDP Per Capita Comparison", 
+      x = "", y = "GDP Per Capita (current US$)"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 0, hjust = 0.5)
+    )
+  
+  # Imports Comparison
+  plot3 <- ggplot(economy, aes(x=Country, y=Imports, fill=Year)) +
+    geom_bar(stat="identity", position=position_dodge()) +
+    scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
+    geom_text(aes(label=Imports), vjust=-0.3, position=position_dodge(width=0.9), size=3.5) + 
+    labs(
+      title = "Imports Comparison", 
+      x = "", y = "Imports (million current US$)"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 0, hjust = 0.5)
+    )
+  
+  # Exports Comparison
+  plot4 <- ggplot(economy, aes(x=Country, y=Exports, fill=Year)) +
+    geom_bar(stat="identity", position=position_dodge()) +
+    scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
+    geom_text(aes(label=Exports), vjust=-0.3, position=position_dodge(width=0.9), size=3.5) + 
+    labs(
+      title = "Exports Comparison", 
+      x = "", y = "Exports (million current US$)"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 0, hjust = 0.5)
+    )
+  
+  plots <- list(plot1, plot2, plot3, plot4)
+  lapply(1:4, function(i) {
+    output[[paste0("plot", i)]] <- renderPlot({
+      plots[[i]]
+    })
+  })
   
   # 其他标签页的逻辑可以在这里添加
   

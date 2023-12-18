@@ -377,9 +377,10 @@ life_expectancy_data <- long_data |>
 ggplot(life_expectancy_data, aes(x = Year, y = Value)) +
   geom_line(color = "#0077B6", linewidth = 1) +
   geom_point(color = "#CD1624", size = 2) +
-  labs(title = "Life Expectancy at Birth", 
-       y = "Life Expectancy (Years)", 
-       x = "Year") +
+  labs(
+    title = "Life Expectancy at Birth", 
+    x = "Year", y = "Life Expectancy (Years)"
+    ) +
   theme_minimal() +
   theme(
       plot.title = element_text(hjust = 0.5),
@@ -388,10 +389,6 @@ ggplot(life_expectancy_data, aes(x = Year, y = Value)) +
 ```
 
 ## Comparison with Other Regional Island States
-
-Marshall Islands, Nauru, Palau
-
-我的想法是分为Social指标和economy指标，Social指标部分gt的table来展示，table下面放上各个国家和对应的国旗。economy部分则绘制图表比较GDP，人均GDP，进口额，出口额。共四张图，画在一起。
 
 ```{r}
 # Create dataframe
@@ -456,7 +453,99 @@ gt_table
 ```
 
 ```{r}
+flags <- c("flags/Federated_States_of_Micronesia.png", 
+           "flags/Marshall_Islands.png", "flags/Nauru.png", "flags/Palau.png")
+```
 
+```{r}
+# Create dataframe
+countries <- c("Micronesia", "Marshall Islands", "Nauru", "Palau")
+economy <- data.frame(
+  Country = rep(countries, each=3),
+  Year = rep(c("2010", "2015", "2021"), times=4),
+  GDP = c(297, 316, 414, 168, 181, 237, 59, 104, 133, 183, 279, 280),
+  GDP_Per_Capita = c(2885, 2906.5, 3640.4, 2986.1, 3159.2, 4038.2, 5924.8, 10050.4, 
+                     12350.9, 10219.9, 15784, 15572.5),
+  Exports = c(23, 40, 34, 17, 25, 23, 25, 61, 54, 12, 6, 7),
+  Imports = c(168, 160, 189, 76, 84, 72, 23, 109, 140, 107, 150, 216)
+)
+```
+
+```{r}
+# GDP Comparison
+plot1 <- ggplot(economy, aes(x=Country, y=GDP, fill=Year)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
+  geom_text(aes(label=GDP), vjust=-0.3, position=position_dodge(width=0.9), size=3.5) + 
+  labs(
+    title = "GDP Comparison", 
+    x = "", y = "GDP (million current US$)"
+       ) +
+  theme_minimal() +
+  theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 0, hjust = 0.5)
+      )
+
+plot1
+```
+
+```{r}
+# GDP Per Capita Comparison
+plot2 <- ggplot(economy, aes(x=Country, y=GDP_Per_Capita, fill=Year)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
+  geom_text(aes(label=GDP_Per_Capita), position=position_dodge(width=0.9), 
+            vjust=0.5, hjust=1.2, size=3.5, angle=90, colour="white") +
+  labs(
+    title = "GDP Per Capita Comparison", 
+    x = "", y = "GDP Per Capita (current US$)"
+       ) +
+  theme_minimal() +
+  theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 0, hjust = 0.5)
+      )
+
+plot2
+```
+
+```{r}
+# Imports Comparison
+plot3 <- ggplot(economy, aes(x=Country, y=Imports, fill=Year)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
+  geom_text(aes(label=Imports), vjust=-0.3, position=position_dodge(width=0.9), size=3.5) + 
+  labs(
+    title = "Imports Comparison", 
+    x = "", y = "Imports (million current US$)"
+       ) +
+  theme_minimal() +
+  theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 0, hjust = 0.5)
+      )
+
+plot3
+```
+
+```{r}
+# Exports Comparison
+plot4 <- ggplot(economy, aes(x=Country, y=Exports, fill=Year)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
+  geom_text(aes(label=Exports), vjust=-0.3, position=position_dodge(width=0.9), size=3.5) + 
+  labs(
+    title = "Exports Comparison", 
+    x = "", y = "Exports (million current US$)"
+       ) +
+  theme_minimal() +
+  theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 0, hjust = 0.5)
+      )
+
+plot4
 ```
 
 ## SWOT Analysis
