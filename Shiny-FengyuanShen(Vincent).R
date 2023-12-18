@@ -1,17 +1,19 @@
-# Set the coordinates
-micronesia_Pohnpei <- c(6.8874, 158.2150)
-micronesia_Chuuk <- c(7.4500, 151.8500)
-micronesia_Kosrae <- c(5.3258, 163.0086)
-micronesia_Yap <- c(9.5167, 138.1333)
+library(tidyverse)
+library(ggplot2)
+library(shiny)
+library(leaflet)
+library(leaflet.extras)
 
-ui <- fluidPage(
+ui <- shinyUI(fluidPage(
   titlePanel("Micronesia Island State Analysis"),
   
-  # Main tab
-  tabsetPanel(
-    tabPanel("Introduction"),
+  navbarPage(
+    title = "", 
+    tabPanel("Introduction", 
+             # 这里放入介绍内容
+    ),
     tabPanel("General Description",
-             navlistPanel(
+             tabsetPanel(
                tabPanel("Map of the Island State", 
                         selectInput("stateSelect", "Select State", choices = c("Pohnpei", "Chuuk", "Kosrae", "Yap")),
                         leafletOutput("selectedStateMap")
@@ -24,10 +26,12 @@ ui <- fluidPage(
              )
     ),
     tabPanel("Key Demographics"),
-    tabPanel("Comparison of the Island State Relative to Other Island States in the Same Region"),
-    tabPanel("SWOT Analysis of the Island State")
+    tabPanel("Comparison with Other Regional Island States"),
+    tabPanel("SWOT Analysis"),
+    tabPanel("Reference")
   )
-)
+))
+
 
 server <- function(input, output) {
   
@@ -139,15 +143,15 @@ server <- function(input, output) {
       addCircles(lng = micronesia_Pohnpei[2], lat = micronesia_Pohnpei[1],
                  radius = 650000, color = '#D90429', fillColor = '#D90429',
                  fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
-                 popup = "Pohnpei") %>%
+                 popup = "Pohnpei") |> 
       addCircles(lng = micronesia_Chuuk[2], lat = micronesia_Chuuk[1],
                  radius = 550000, color = '#134074', fillColor = '#134074',
                  fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
-                 popup = "Chuuk") %>%
+                 popup = "Chuuk") |> 
       addCircles(lng = micronesia_Kosrae[2], lat = micronesia_Kosrae[1],
                  radius = 450000, color = '#386641', fillColor = '#386641',
                  fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
-                 popup = "Kosrae") %>%
+                 popup = "Kosrae") |> 
       addCircles(lng = micronesia_Yap[2], lat = micronesia_Yap[1],
                  radius = 500000, color = '#F9C80E', fillColor = '#F9C80E',
                  fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
