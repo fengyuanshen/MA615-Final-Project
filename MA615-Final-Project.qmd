@@ -19,6 +19,7 @@ library(shiny)
 library(leaflet)
 library(leaflet.extras)
 library(treemap)
+library(treemapify)
 ```
 
 ```{r}
@@ -28,7 +29,7 @@ micronesia_data <- read_csv("data/API_FSM_DS2_en_csv_v2_6235080.csv", skip = 4)
 
 ## General description
 
-### Map of the island state
+### Map of the Island State
 
 #### Pohnpei
 
@@ -318,33 +319,30 @@ ggplot(data = population_data, aes(x = Year)) +
 
 ### Demographic Composition
 
-The indigenous population of the nation, which is predominantly [Micronesian](https://en.wikipedia.org/wiki/Micronesians "Micronesians"), consists of various ethnolinguistic groups. It has a nearly 100% Pacific Islander and [Asian](https://en.wikipedia.org/wiki/Asian_people "Asian people") population: [Chuukese](https://en.wikipedia.org/wiki/Chuukese_people "Chuukese people") 48.8%, [Pohnpeian](https://en.wikipedia.org/wiki/Pohnpeian_language "Pohnpeian language") 24.2%, [Kosraean](https://en.wikipedia.org/wiki/Kosraean_language "Kosraean language") 6.2%, [Yapese](https://en.wikipedia.org/wiki/Yapese_people "Yapese people") 5.2%, [Yap](https://en.wikipedia.org/wiki/Yap "Yap") outer islands 4.5%, [Asian](https://en.wikipedia.org/wiki/Asian_ethnic_groups "Asian ethnic groups") 1.8%, [Polynesian](https://en.wikipedia.org/wiki/Polynesians "Polynesians") 1.5%, other 6.4%, unknown 1.4%. 这个用树形图
-
 ```{r}
-# 创建人口构成的数据框
+# Create a demographic dataframe
 composition_data <- data.frame(
   Group = c("Chuukese", "Pohnpeian", "Kosraean", "Yapese", 
             "Yap outer islands", "Asian", "Polynesian", "Other", "Unknown"),
   Percentage = c(48.8, 24.2, 6.2, 5.2, 4.5, 1.8, 1.5, 6.4, 1.4)
 )
 
-# 绘制树形图
-treemap(
-  composition_data,
-  index = "Group",
-  vSize = "Percentage",
-  title = "Population Composition",
-  fontsize.labels = c(12, 10, 8),
-  fontcolor.labels = c("white", "white", "white"),
-  fontface.labels = c("bold", "bold", "bold"),
-  align.labels = list(
-    c("center", "center"),
-    c("left", "top"),
-    c("left", "bottom")
-  ),
-  overlap.labels = 0.5,
-  inflate.labels = F
-)
+# Add a label with a percentage
+composition_data$Label <- paste(composition_data$Group, "\n", 
+                               round(composition_data$Percentage,2), "%", sep="")
+
+# Draw a treemap and add labels
+ggplot(composition_data, aes(area = Percentage, fill = Group, label = Label)) +
+  geom_treemap(colour = "black", size = 1.5) +
+  geom_treemap_text(colour = "white", place = "centre", grow = FALSE, reflow = TRUE) +
+  labs(title = "Population Composition by Ethnolinguistic Group") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, hjust = 0.5),
+    legend.position = "none"
+    ) +
+  scale_fill_manual(values = c("#D00000", "#BB010B", "#F9844A", "#F9C74F", "#90BE6D",
+                               "#43AA8B", "#277DA1", "#014F86", "#023E8A", "#03045E"))
 ```
 
 ### Male vs Female
