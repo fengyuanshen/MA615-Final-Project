@@ -6,22 +6,26 @@ format: html
 editor: visual
 ---
 
-## Abstract
-
 ## Introduction
+
+这里加一些Micronesia的图片（比如国旗），按照老头的要求
 
 ```{r echo=FALSE}
 library(tidyverse)
+library(ggplot2)
 library(shiny)
 library(leaflet)
 library(leaflet.extras)
 ```
 
+```{r}
+# Read the CSV file and skip the first 4 lines
+micronesia_data <- read_csv("data/API_FSM_DS2_en_csv_v2_6235080.csv", skip = 4)
+```
+
 ## General description
 
 ### Map of the island state
-
-micronesia一共有四个state: Chuuk Kosrae Pohnpei Yap, 可以做一个下拉菜单显示他们
 
 #### Pohnpei
 
@@ -141,15 +145,15 @@ micronesia_map_world <- leaflet() |>
   addCircles(lng = micronesia_Pohnpei[2], lat = micronesia_Pohnpei[1],
              radius = 650000, color = '#D90429', fillColor = '#D90429',
              fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
-             popup = "Pohnpei") %>%
+             popup = "Pohnpei") |> 
   addCircles(lng = micronesia_Chuuk[2], lat = micronesia_Chuuk[1],
              radius = 550000, color = '#134074', fillColor = '#134074',
              fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
-             popup = "Chuuk") %>%
+             popup = "Chuuk") |> 
   addCircles(lng = micronesia_Kosrae[2], lat = micronesia_Kosrae[1],
              radius = 450000, color = '#386641', fillColor = '#386641',
              fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
-             popup = "Kosrae") %>%
+             popup = "Kosrae") |> 
   addCircles(lng = micronesia_Yap[2], lat = micronesia_Yap[1],
              radius = 500000, color = '#F9C80E', fillColor = '#F9C80E',
              fillOpacity = 0.7, weight = 2, dashArray = '5, 5',
@@ -160,13 +164,161 @@ micronesia_map_world
 
 ### Key facts about the island state
 
+可以用world bank的数据。使用表格来展示
+
 ### A brief narrative description of the island state
 
-## Key demographics
+可以用Wikipedia的数据
+
+```{r}
+# A list of selected indicators
+selected_indicators <- c('GDP (current US$)', 'GDP growth (annual %)', 
+                         'GDP per capita (current US$)', 
+                         'GDP per capita growth (annual %)',
+                         'Imports of goods and services (current US$)', 
+                         'Exports of goods and services (current US$)', 
+                         'Population, total', 'Population growth (annual %)', 
+                         'Travel services (% of commercial service exports)')
+
+# Filter data
+filtered_data <- micronesia_data |> 
+                 filter(`Indicator Name` %in% selected_indicators) |> 
+                 select(-c(`Country Name`, `Country Code`, `Indicator Code`))
+
+# Convert data to long format
+long_data <- filtered_data |> 
+             pivot_longer(cols = `1986`:`2022`, names_to = "Year", values_to = "Value") |> 
+             mutate(Year = as.numeric(Year))  # Convert year to numeric
+```
+
+#### GDP
+
+```{r}
+gdp_growth_data <- long_data |> 
+                   filter(`Indicator Name` %in% c('GDP (current US$)', 
+                                                  'GDP growth (annual %)'))
+
+ggplot(data = gdp_growth_data, aes(x = Year)) +
+    geom_col(data = filter(gdp_growth_data, `Indicator Name` == 'GDP (current US$)'),
+             aes(y = Value / 10^6, fill = Value), color = "black") +
+    scale_fill_gradientn(colours = c("#03045E", "#012A4A", "#013A63", "#023E8A",
+                                     "#014F86", "#277DA1", "#577590", "#4D908E", 
+                                     "#43AA8B", "#90BE6D", "#F9C74F", "#F9844A",
+                                     "#DC2F02", "#D00000"),
+                       values = seq(0, 1, length.out = 14)) +
+    # Amplify the GDP growth rate to match the size of GDP
+    geom_line(data = filter(gdp_growth_data, `Indicator Name` == 'GDP growth (annual %)'), 
+              aes(y = Value * 10 + 300), color = "#FFC300", linewidth = 1, group = 1) + 
+    scale_y_continuous(sec.axis = sec_axis(~./10 - 30, 
+                                           name = "GDP Growth Rate (annual %)")) +
+    labs(
+      title = "GDP and GDP Growth Rate Over Time", 
+      x = "Year", y = "GDP (million current US$)"
+      ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.position = "none"
+      )
+```
+
+#### GDP Per Capita
+
+```{r}
+gdp_per_capita_data <- long_data |> 
+                      filter(`Indicator Name` %in% c('GDP per capita (current US$)', 
+                                                     'GDP per capita growth (annual %)'))
+
+ggplot(data = gdp_per_capita_data, aes(x = Year)) +
+    geom_col(data = filter(gdp_per_capita_data, 
+                           `Indicator Name` == 'GDP per capita (current US$)'),
+             aes(y = Value, fill = Value), color = "black") +
+    scale_fill_gradientn(colours = c("#03045E", "#012A4A", "#013A63", "#023E8A",
+                                     "#014F86", "#277DA1", "#577590", "#4D908E", 
+                                     "#43AA8B", "#90BE6D", "#F9C74F", "#F9844A",
+                                     "#DC2F02", "#D00000"),
+                       values = seq(0, 1, length.out = 14)) +
+    geom_line(data = filter(gdp_per_capita_data, 
+                            `Indicator Name` == 'GDP per capita growth (annual %)'), 
+              aes(y = Value * 100 + 2500), color = "#FFC300", linewidth = 1, group = 1) + 
+    scale_y_continuous(sec.axis = sec_axis(~./100 - 25, name = 
+                                             "GDP Per Capita Growth Rate (annual %)")) +
+    labs(
+      title = "GDP Per Capita and its Growth Rate Over Time", 
+      x = "Year", y = "GDP Per Capita (current US$)"
+      ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.position = "none"
+      )
+```
+
+#### Export and Import
+
+```{r}
+trade_data <- long_data |> 
+              filter(`Indicator Name` %in% c('Imports of goods and services (current US$)',
+                                             'Exports of goods and services (current US$)'))
+
+ggplot(trade_data, aes(x = Year, y = Value / 10^6, fill = `Indicator Name`)) +
+    geom_bar(stat = "identity", position = "stack") +
+    scale_fill_manual(values = c('Imports of goods and services (current US$)' = '#003566',
+                                 'Exports of goods and services (current US$)' = '#D62828'),
+                      name = "Trade Type", labels = c("Imports", "Exports")) +
+    labs(
+      title = "Imports and Exports Over Time", 
+      x = "Year", y = "Value (million current US$)"
+      ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 45, hjust = 1)
+      )
+```
+
+#### Population
+
+```{r}
+population_data <- long_data |> 
+                   filter(`Indicator Name` %in% c('Population, total', 
+                                                  'Population growth (annual %)'))
+
+ggplot(data = population_data, aes(x = Year)) +
+    geom_col(data = filter(population_data, `Indicator Name` == 'Population, total'), 
+             aes(y = Value / 1000, fill = Value), color = "black") +
+    scale_fill_gradientn(colours = c("#D00000", "#DC2F02", "#F3722C", "#F9844A",
+                                     "#F9C74F", "#FFE347", "#90BE6D", "#4D908E",
+                                     "#43AA8B", "#006F57", "#277DA1", "#014F86"),
+                       values = seq(0, 1, length.out = 15)) +
+    geom_line(data = filter(population_data, 
+                            `Indicator Name` == 'Population growth (annual %)'), 
+              aes(y = Value * 10 + 90), color = "#FFC300", linewidth = 1, group = 1) +
+    scale_y_continuous(sec.axis = sec_axis(~./10 - 9, 
+                                           name = "Population Growth Rate (annual %)")) +
+    labs(
+      title = "Population and Population Growth Rate Over Time", 
+      x = "Year", y = "Total Population (thousand)"
+      ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.position = "none"
+      )
+```
+
+## Key Demographics
 
 ## Comparison of the Island State relative to other island states in the same region
 
-## SWOT analysis of the Island State
+随便找几个周边的国家，然后对比GDP，人口，教育水平，医疗设施等等因素
+
+这里使用table和graphs来展示
+
+## SWOT Analysis
 
 ## Reference
 
