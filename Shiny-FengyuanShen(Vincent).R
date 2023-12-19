@@ -22,29 +22,91 @@ ui <- shinyUI(fluidPage(
   
   navbarPage(
     title = "", 
-    tabPanel("Introduction", 
-             # 这里放入介绍内容
+    tabPanel("Introduction",
+             fluidRow(
+               column(6,  # 6 column widths for text
+                      h3("Project Overview: An In-Depth Introduction"),
+                      p("This project aims to provide users with comprehensive information about the Federated States of Micronesia. It is structured into several key sections to facilitate a thorough understanding of the nation:"),
+                      
+                      h4("General Description:"),
+                      p("This section offers insights into the geographical location, political landscape, economic status, historical development, culture, and surrounding environment of the Federated States of Micronesia. This foundational knowledge sets the stage for a deeper exploration of the nation."),
+                      
+                      h4("Key Demographics:"),
+                      p("Here, the focus shifts to the demographic profile of Micronesia. This includes detailed information on population composition, growth trends, gender ratios, and life expectancy, offering a clear picture of the nation's social structure."),
+                      
+                      h4("Comparison with Other Regional Island States:"),
+                      p("In this segment, the Federated States of Micronesia is compared with neighboring countries such as the Marshall Islands, Nauru, and Palau. This comparison is based on social and economic indicators, providing a regional perspective and highlighting the relative development of these island nations."),
+                      
+                      h4("SWOT Analysis:"),
+                      p("The final section presents a SWOT analysis, examining the strengths, weaknesses, opportunities, and potential threats related to the Federated States of Micronesia. This analysis aims to offer a balanced view of the nation's current status and prospects for future development."),
+                      
+                      h3("Backgroud Information of Micronesia, Fed. Sts."),
+                      p("The Federated States of Micronesia (FSM), also known as Micronesia, is an island country in the Pacific Ocean's Micronesia subregion. It consists of four states - Yap, Chuuk, Pohnpei, and Kosrae - spanning about 607 islands across 2,700 km near the equator. These islands are situated northeast of Indonesia and Papua New Guinea, and south of Guam. Although the FSM's land area is only about 702 km², its marine territory covers nearly 3 million km², ranking it 14th in the world for its exclusive economic zone."),
+
+                      p("Palikir on Pohnpei Island is the capital, while Weno in Chuuk is the largest city. Each state centers around volcanic islands, with many outlying atolls, especially in the Caroline Islands region. The term 'Micronesia' often refers to either the FSM or the broader region comprising several countries."),
+                      
+                      p("Formerly under U.S. administration as part of the Trust Territory of the Pacific Islands, FSM gained sovereignty on November 3, 1986, through a Compact of Free Association with the U.S., after establishing its constitution on May 10, 1979. It's a United Nations member and part of the Pacific Community since 1983.")
+               ),
+               column(6,  # 6 column widths for pictures
+                      img(src = "pic/introduction.jpg", style = "width: 100%; height: auto; object-fit: contain;")
+               )
+             )
     ),
     tabPanel("General Description",
              tabsetPanel(
                tabPanel("Map of the Island State", 
+                        h3("Map Description:"),
+                        p("This map provides a detailed view of the Federated States of Micronesia, highlighting its four states - Pohnpei, Chuuk, Kosrae, and Yap. Users can select a state from the dropdown menu to zoom in and explore more specific geographical details."),
+                        
                         selectInput("stateSelect", "Select State", choices = c("Pohnpei", "Chuuk", "Kosrae", "Yap")),
                         leafletOutput("selectedStateMap")
                ),
-               tabPanel("World Map Highlighting the Island State's Location", 
+               tabPanel("World Map Highlighting the Island State's Location",
+                        h3("Map Description:"),
+                        p("This detailed map provides a clear visualization of the geographical positions of the four states - Pohnpei, Chuuk, Kosrae, and Yap - on the global landscape. Each state is distinctly color-coded for easy identification: Pohnpei in vibrant red, Chuuk in a deep blue, Kosrae in a lush green, and Yap in a bright yellow. The map is designed with an interactive feature, allowing users to zoom in for a closer look and uncover more intricate geographical details."),
                         leafletOutput("worldMap")
                ),
                tabPanel("Economic Characteristics of the Island State",
+                        h3("Chart Description:"),
+                        p("This section primarily explores the economic status of the Federated States of Micronesia. Users can engage with an array of charts depicting various economic indicators, such as GDP and its growth rate, per capita GDP, and import-export values, through a drop-down menu selection. Additionally, there is an interactive slider feature that enables users to select a specific year range, providing a more detailed view of the economic development over time."),
                         selectInput("selectedChart", "Choose a Chart", 
                                     choices = c("GDP and GDP Growth", "GDP Per Capita", "Export and Import")),
                         sliderInput("yearRangeEconomic", "Select Year Range", 
                                     min = 1986, max = 2022, value = c(1986, 2022)),
                         plotOutput("selectedChartPlot")
                ),
-               tabPanel("Overview of Political, Social, Cultural, and Environmental Aspects")
+               tabPanel("Overview of Political, Social, Cultural, and Other Aspects",
+                        p("This section will offer a brief overview of additional relevant information pertaining to the Federated States of Micronesia:"),
+                        
+                        fluidRow(
+                          column(6,  # 6 column widths for text
+                                 h4("Politics"),
+                                 p("Gained independence from US-administered Trust Territory of the Pacific Islands in 1986. It's a democratic nation with a Compact of Free Association with the United States."),
+                                 
+                                 h4("Economy"),
+                                 p("Relies on subsistence farming, fishing, and US financial aid. Limited natural resources; potential for tourism development is hindered by remoteness."),
+                                 
+                                 h4("History"),
+                                 p("Inhabited for over 4,000 years; influenced by Spanish, German, and Japanese rule. Significant World War II site."),
+                                 
+                                 h4("Population and Culture"),
+                                 p("Predominantly Micronesian population, with diverse ethnolinguistic groups. Rich in traditions and customs, with notable sites like Yap's Rai stones and Pohnpei's Nan Madol ruins."),
+                                 
+                                 h4("Environment"),
+                                 p("Tropical rainforest climate, characterized by high rainfall, lush landscapes, and unique ecosystems.")
+                          ),
+                          column(6,  # 6 column widths for pictures
+                                 img(src = "pic/overview1.jpg", style = "width: 100%; height: auto; object-fit: contain;"),
+                                 img(src = "pic/overview2.jpg", style = "width: 100%; height: auto; object-fit: contain;")
+                          )
+                        )
+               )
              )
     ),
     tabPanel("Key Demographics",
+             p("In this section, users can explore the demographic data of the Federated States of Micronesia by selecting different types of charts via clickable buttons. This includes information on annual total population, population growth rate, demographic composition, gender ratio, and life expectancy. Additionally, an interactive slider allows for the selection of specific year ranges, providing a more in-depth understanding of the country's demographic trends over time."),
+             p("Overall, the Federated States of Micronesia has experienced a gradual population growth, characterized by a remarkably stable gender ratio. Post-World War II, there has been a steady increase in life expectancy, although this improvement has plateaued in recent years, indicating a more moderate pace of growth in this aspect."),
+             
              sidebarLayout(
                sidebarPanel(
                  radioButtons("selectedChartType", "Select Chart Type",
@@ -61,89 +123,85 @@ ui <- shinyUI(fluidPage(
     ),
     tabPanel("Comparison with Other Regional Island States",
              selectInput("indicatorType", "Select Indicator Type for Comparison", 
-                         choices = c("Social Indicator", "Economy Indicator")),
+                         choices = c("Social Indicator", "Economic Indicator")),
              uiOutput("indicatorDisplay")
     ),
     tabPanel("SWOT Analysis",
              tabsetPanel(
                tabPanel("Strengths",
-                        column(8,  # 8列宽度用于文本
+                        column(5,  # 5 column widths for text
                                h3("Strengths"),
                                HTML("
                                   <ol>
                                     <li>Strategic Location: Situated in the Western Pacific Ocean, Micronesia's extensive exclusive economic zone offers significant marine resources.</li>
                                     <br>
-                                    <li></li>
+                                    <li>U.S. Support: The Compact of Free Association with the United States provides substantial financial aid and development support.</li>
                                     <br>
-                                    <li></li>
+                                    <li>Natural Resources: The primary economic sector is commercial fishing, with significant income from fishing rights sales and offshore corporate registrations for captive insurance.</li>
                                     <br>
-                                    <li></li>
+                                    <li>Low Debt Levels: FSM has a relatively low government debt-to-GDP ratio, indicating financial stability.</li>
                                   </ol>
                                 ")
                         ),
-                        column(4,  # 4列宽度用于图片
-                               uiOutput("strengthsImage")
-                               # 这里预留给图片
+                        column(7, # 7 column widths for pictures
+                               # Insert local picture
+                               img(src = "pic/strengths.jpg", style = "width: 100%; height: auto; object-fit: contain;")
                         )
                ),
                tabPanel("Weaknesses",
-                        column(8,  # 8列宽度用于文本
+                        column(5,  # 5 column widths for text
                                h3("Weaknesses"),
                                HTML("
                                   <ol>
-                                    <li>Strategic Location: Situated in the Western Pacific Ocean, Micronesia's extensive exclusive economic zone offers significant marine resources.</li>
+                                    <li>Economic Dependence: Heavy reliance on U.S. funding and grants, with a need to diversify economic sources.</li>
                                     <br>
-                                    <li></li>
+                                    <li>Limited Foreign Investment: Restrictions on foreign ownership and challenges in registering businesses deter foreign direct investment.</li>
                                     <br>
-                                    <li></li>
+                                    <li>Weak Infrastructure: Poor infrastructure and high costs of imported goods and services hamper economic growth.</li>
                                     <br>
-                                    <li></li>
+                                    <li>Subsistence Economy: Apart from a few urban centers, most of the economy is subsistence-based, limiting commercial activity.</li>
                                   </ol>
                                 ")
                         ),
-                        column(4,  # 4列宽度用于图片
-                               uiOutput("strengthsImage")
-                               # 这里预留给图片
+                        column(7,  # 7 column widths for pictures
+                               # Insert local picture
+                               img(src = "pic/weaknesses.jpg", style = "width: 100%; height: auto; object-fit: contain;")
                         )
                ),
                tabPanel("Opportunities",
-                        column(8,  # 8列宽度用于文本
+                        column(5,  # 5 column widths for text
                                h3("Opportunities"),
                                HTML("
                                   <ol>
-                                    <li>Strategic Location: Situated in the Western Pacific Ocean, Micronesia's extensive exclusive economic zone offers significant marine resources.</li>
+                                    <li>Economic Diversification: Opportunities to diversify the economy beyond fishing and government employment.</li>
                                     <br>
-                                    <li></li>
+                                    <li>Tourism Potential: Natural beauty and unique culture offer potential for eco-tourism development.</li>
                                     <br>
-                                    <li></li>
-                                    <br>
-                                    <li></li>
+                                    <li>Trust Fund Utilization: Transitioning to using proceeds from a trust fund developed from U.S. contributions for development.</li>
                                   </ol>
                                 ")
                         ),
-                        column(4,  # 4列宽度用于图片
-                               uiOutput("strengthsImage")
-                               # 这里预留给图片
+                        column(7,  # 7 column widths for pictures
+                               # Insert local picture
+                               img(src = "pic/opportunities.jpg", style = "width: 100%; height: auto; object-fit: contain;")
                         )
                ),
                tabPanel("Threats",
-                        column(8,  # 8列宽度用于文本
+                        column(5,  # 5 column widths for text
                                h3("Threats"),
                                HTML("
                                   <ol>
-                                    <li>Strategic Location: Situated in the Western Pacific Ocean, Micronesia's extensive exclusive economic zone offers significant marine resources.</li>
+                                    <li>Reduction in Compact Funding: The shift in Compact funding methodology in 2023 poses financial challenges.</li>
                                     <br>
-                                    <li></li>
+                                    <li>Political Instability: Lack of political parties and potential for instability could affect economic decisions.</li>
                                     <br>
-                                    <li></li>
-                                    <br>
-                                    <li></li>
+                                    <li>Environmental Risks: As an island nation, Micronesia faces significant risks from climate change and natural disasters.</li>
                                   </ol>
                                 ")
                         ),
-                        column(4,  # 4列宽度用于图片
-                               uiOutput("strengthsImage")
-                               # 这里预留给图片
+                        column(7,  # 7 column widths for pictures
+                               # Insert local picture
+                               img(src = "pic/threats.jpg", style = "width: 100%; height: auto; object-fit: contain;")
                         )
                )
              )
@@ -531,7 +589,7 @@ server <- function(input, output) {
     })
   
 
-  # 动态UI根据选择展示不同的内容
+  # The dynamic UI displays different content depending on the selection
   # Create dataframe
   country_data <- data.frame(
     Country = c("Micronesia, Fed. Sts.", "Marshall Islands", "Nauru", "Palau"),
@@ -591,26 +649,26 @@ server <- function(input, output) {
       locations = cells_column_labels(columns = everything())
     )
   
-  flags <- c("flags/Flag_of_the_Federated_States_of_Micronesia.svg", 
-             "flags/Flag_of_the_Marshall_Islands.svg", "flags/Flag_of_Nauru.svg", "flags/Flag_of_Palau.svg")
+  flags <- c("pic/Flag_of_the_Federated_States_of_Micronesia.svg", 
+             "pic/Flag_of_the_Marshall_Islands.svg", "pic/Flag_of_Nauru.svg", "pic/Flag_of_Palau.svg")
   
   output$indicatorDisplay <- renderUI({
     if(input$indicatorType == "Social Indicator") {
-      # 显示表格和图片
+      # Displays tables and pictures
       list(
-        gt::gt_output("socialTable"),  # 渲染gt表格
-        # 创建包含所有国旗图片的div，调整图片大小
+        gt::gt_output("socialTable"),  # Render gt table
+        # Create a div that contains all the flag images and resize them
         tags$div(
-          style = "text-align: center; margin-bottom: 40px;",  # 添加样式使图片居中并添加底部间距
+          style = "text-align: center; margin-bottom: 40px;",  # Add a style to center the image and add bottom spacing
           lapply(flags, function(flag) {
-            tags$img(src = flag, style = "height: 150px; margin: 10px; display: inline-block;")  # 调整高度和显示方式
+            tags$img(src = flag, style = "height: 150px; margin: 10px; display: inline-block;")  # Adjust the height and display mode
           }),
           tags$p("The image above displays the national flags of four Pacific island nations. From left to right, they represent the Federated States of Micronesia, the Marshall Islands, Nauru, and Palau, each with its unique design and colors.",
-                 style = "text-align: center; font-size: 18px;")  # 文本居中
+                 style = "text-align: center; font-size: 18px;")  # Center the text
         )
       )
-    } else if(input$indicatorType == "Economy Indicator") {
-      # 显示图表
+    } else if(input$indicatorType == "Economic Indicator") {
+      # Show graphs
       plot_output_list <- lapply(1:4, function(i) {
         plotOutput(outputId = paste0("plot", i))
       })
@@ -618,7 +676,7 @@ server <- function(input, output) {
     }
   })
   
-  # 生成社会指标表
+  # Generate a social indicator table
   output$socialTable <- gt::render_gt({
     gt_table
   })

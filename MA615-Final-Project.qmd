@@ -8,9 +8,11 @@ editor: visual
 
 ## Introduction
 
-这里加一些Micronesia的图片（比如国旗），按照老头的要求
+The Federated States of Micronesia (FSM), also known as Micronesia, is an island country in the Pacific Ocean's Micronesia subregion. It consists of four states - Yap, Chuuk, Pohnpei, and Kosrae - spanning about 607 islands across 2,700 km near the equator. These islands are situated northeast of Indonesia and Papua New Guinea, and south of Guam. Although the FSM's land area is only about 702 km², its marine territory covers nearly 3 million km², ranking it 14th in the world for its exclusive economic zone.
 
-这里是综述，比如国土面积，人口，语言，有几个州，人类发展指数之类的信息
+Palikir on Pohnpei Island is the capital, while Weno in Chuuk is the largest city. Each state centers around volcanic islands, with many outlying atolls, especially in the Caroline Islands region. The term 'Micronesia' often refers to either the FSM or the broader region comprising several countries.
+
+Formerly under U.S. administration as part of the Trust Territory of the Pacific Islands, FSM gained sovereignty on November 3, 1986, through a Compact of Free Association with the U.S., after establishing its constitution on May 10, 1979. It's a United Nations member and part of the Pacific Community since 1983.
 
 ```{r echo=FALSE}
 library(tidyverse)
@@ -29,7 +31,7 @@ library(gtExtras)
 micronesia_data <- read_csv("data/API_FSM_DS2_en_csv_v2_6235080.csv", skip = 4)
 ```
 
-## General description
+## General Description
 
 ### Map of the Island State
 
@@ -282,9 +284,17 @@ ggplot(trade_data, aes(x = Year, y = Value / 10^6, fill = `Indicator Name`)) +
       )
 ```
 
-### Overview of Political, Social, Cultural, and Environmental Aspects
+### Overview of Political, Social, Cultural, and Other Aspects
 
-可以用Wikipedia的描述性语言，分类别描述
+**Politics**: Gained independence from US-administered Trust Territory of the Pacific Islands in 1986. It's a democratic nation with a Compact of Free Association with the United States.
+
+**Economy**: Relies on subsistence farming, fishing, and US financial aid. Limited natural resources; potential for tourism development is hindered by remoteness.
+
+**History**: Inhabited for over 4,000 years; influenced by Spanish, German, and Japanese rule. Significant World War II site.
+
+**Population and Culture**: Predominantly Micronesian population, with diverse ethnolinguistic groups. Rich in traditions and customs, with notable sites like Yap's Rai stones and Pohnpei's Nan Madol ruins.
+
+**Environment**: Tropical rainforest climate, characterized by high rainfall, lush landscapes, and unique ecosystems.
 
 ## Key Demographics
 
@@ -550,8 +560,6 @@ plot4
 
 ## SWOT Analysis
 
-SWOT分为四个二级菜单：可以插一堆图片，每个分析点都可以加图片
-
 **Strengths:**
 
 1.  Strategic Location: Situated in the Western Pacific Ocean, Micronesia's extensive exclusive economic zone offers significant marine resources.
@@ -589,11 +597,3 @@ SWOT分为四个二级菜单：可以插一堆图片，每个分析点都可以�
 3.  Environmental Risks: As an island nation, Micronesia faces significant risks from climate change and natural disasters.
 
 ## Reference
-
-### **4. SWOT分析**
-
--   **分析密克罗尼西亚的优势、劣势、机会和威胁**：
-
-    -   研究经济、环境、政治等方面。比如进出口额占据GDP的比重
-
-    -   这部分可能更多是叙述性的，但可以通过图表或图像来辅助展示。
