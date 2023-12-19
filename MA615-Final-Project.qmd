@@ -343,6 +343,10 @@ Tropical rainforest climate, characterized by high rainfall, lush landscapes, an
 
 ## Key Demographics
 
+In this section, users can explore the demographic data of the Federated States of Micronesia. This includes information on annual total population, population growth rate, demographic composition, gender ratio, and life expectancy.
+
+Overall, the Federated States of Micronesia has experienced a gradual population growth, characterized by a remarkably stable gender ratio. Post-World War II, there has been a steady increase in life expectancy, although this improvement has plateaued in recent years, indicating a more moderate pace of growth in this aspect.
+
 ### Population and its Growth Rate
 
 ```{r echo=FALSE,warning=FALSE}
@@ -444,6 +448,10 @@ ggplot(life_expectancy_data, aes(x = Year, y = Value)) +
 ```
 
 ## Comparison with Other Regional Island States
+
+In this section, my project conducts a comparative analysis between the Federated States of Micronesia and its neighboring countries (Marshall Islands, Nauru, and Palau), focusing on various social and economic indicators to provide a comprehensive view of the region's overall development.
+
+Notably, within this region, the Federated States of Micronesia boasts the highest GDP and the largest population. However, its GDP per capita does not stand out as particularly high. Its export figures are moderate, while its import expenditures are considerably higher. An intriguing point of contrast is that, although Micronesia has the lowest Human Development Index among these four nations, it surprisingly leads in terms of life expectancy.
 
 ```{r echo=FALSE,warning=FALSE}
 # Create dataframe
@@ -673,7 +681,7 @@ plot4
 
 [IMF DATA](https://www.imf.org/en/Data)
 
-[Federated States of Micronesia - Spotlight shines brightly on \"The Big Ocean State\"](https://statemag.state.gov/2021/07/0721pom/)
+[Federated States of Micronesia - Spotlight shines brightly on "The Big Ocean State"](https://statemag.state.gov/2021/07/0721pom/)
 
 [US Department of State - 2021 Investment Climate Statements: Micronesia](https://www.state.gov/reports/2021-investment-climate-statements/micronesia/)
 
