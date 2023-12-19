@@ -64,7 +64,90 @@ ui <- shinyUI(fluidPage(
                          choices = c("Social Indicator", "Economy Indicator")),
              uiOutput("indicatorDisplay")
     ),
-    tabPanel("SWOT Analysis"),
+    tabPanel("SWOT Analysis",
+             tabsetPanel(
+               tabPanel("Strengths",
+                        column(8,  # 8列宽度用于文本
+                               h3("Strengths"),
+                               HTML("
+                                  <ol>
+                                    <li>Strategic Location: Situated in the Western Pacific Ocean, Micronesia's extensive exclusive economic zone offers significant marine resources.</li>
+                                    <br>
+                                    <li></li>
+                                    <br>
+                                    <li></li>
+                                    <br>
+                                    <li></li>
+                                  </ol>
+                                ")
+                        ),
+                        column(4,  # 4列宽度用于图片
+                               uiOutput("strengthsImage")
+                               # 这里预留给图片
+                        )
+               ),
+               tabPanel("Weaknesses",
+                        column(8,  # 8列宽度用于文本
+                               h3("Weaknesses"),
+                               HTML("
+                                  <ol>
+                                    <li>Strategic Location: Situated in the Western Pacific Ocean, Micronesia's extensive exclusive economic zone offers significant marine resources.</li>
+                                    <br>
+                                    <li></li>
+                                    <br>
+                                    <li></li>
+                                    <br>
+                                    <li></li>
+                                  </ol>
+                                ")
+                        ),
+                        column(4,  # 4列宽度用于图片
+                               uiOutput("strengthsImage")
+                               # 这里预留给图片
+                        )
+               ),
+               tabPanel("Opportunities",
+                        column(8,  # 8列宽度用于文本
+                               h3("Opportunities"),
+                               HTML("
+                                  <ol>
+                                    <li>Strategic Location: Situated in the Western Pacific Ocean, Micronesia's extensive exclusive economic zone offers significant marine resources.</li>
+                                    <br>
+                                    <li></li>
+                                    <br>
+                                    <li></li>
+                                    <br>
+                                    <li></li>
+                                  </ol>
+                                ")
+                        ),
+                        column(4,  # 4列宽度用于图片
+                               uiOutput("strengthsImage")
+                               # 这里预留给图片
+                        )
+               ),
+               tabPanel("Threats",
+                        column(8,  # 8列宽度用于文本
+                               h3("Threats"),
+                               HTML("
+                                  <ol>
+                                    <li>Strategic Location: Situated in the Western Pacific Ocean, Micronesia's extensive exclusive economic zone offers significant marine resources.</li>
+                                    <br>
+                                    <li></li>
+                                    <br>
+                                    <li></li>
+                                    <br>
+                                    <li></li>
+                                  </ol>
+                                ")
+                        ),
+                        column(4,  # 4列宽度用于图片
+                               uiOutput("strengthsImage")
+                               # 这里预留给图片
+                        )
+               )
+             )
+    ),
     tabPanel("Reference")
   )
 ))

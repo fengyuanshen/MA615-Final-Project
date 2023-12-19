@@ -552,6 +552,42 @@ plot4
 
 SWOT分为四个二级菜单：可以插一堆图片，每个分析点都可以加图片
 
+**Strengths:**
+
+1.  Strategic Location: Situated in the Western Pacific Ocean, Micronesia's extensive exclusive economic zone offers significant marine resources.
+
+2.  U.S. Support: The Compact of Free Association with the United States provides substantial financial aid and development support.
+
+3.  Natural Resources: The primary economic sector is commercial fishing, with significant income from fishing rights sales and offshore corporate registrations for captive insurance.
+
+4.  Low Debt Levels: FSM has a relatively low government debt-to-GDP ratio, indicating financial stability.
+
+**Weaknesses:**
+
+1.  Economic Dependence: Heavy reliance on U.S. funding and grants, with a need to diversify economic sources.
+
+2.  Limited Foreign Investment: Restrictions on foreign ownership and challenges in registering businesses deter foreign direct investment.
+
+3.  Weak Infrastructure: Poor infrastructure and high costs of imported goods and services hamper economic growth.
+
+4.  Subsistence Economy: Apart from a few urban centers, most of the economy is subsistence-based, limiting commercial activity.
+
+**Opportunities:**
+
+1.  Economic Diversification: Opportunities to diversify the economy beyond fishing and government employment.
+
+2.  Tourism Potential: Natural beauty and unique culture offer potential for eco-tourism development.
+
+3.  Trust Fund Utilization: Transitioning to using proceeds from a trust fund developed from U.S. contributions for development.
+
+**Threats:**
+
+1.  Reduction in Compact Funding: The shift in Compact funding methodology in 2023 poses financial challenges.
+
+2.  Political Instability: Lack of political parties and potential for instability could affect economic decisions.
+
+3.  Environmental Risks: As an island nation, Micronesia faces significant risks from climate change and natural disasters.
+
 ## Reference
 
 ### **4. SWOT分析**
