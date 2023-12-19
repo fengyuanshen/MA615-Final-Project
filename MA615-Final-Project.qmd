@@ -1,7 +1,8 @@
 ---
-title: "MA615-Final-Project"
+title: "Micronesia Island State Analysis"
+subtitle: "MA615 Final Project"
 author: "Fengyuan Shen (Vincent)"
-date: "Dec 15 2023"
+date: "Dec 18 2023"
 format: html
 editor: visual
 ---
