@@ -122,6 +122,9 @@ ui <- shinyUI(fluidPage(
              )
     ),
     tabPanel("Comparison with Other Regional Island States",
+             p("In this section, my project conducts a comparative analysis between the Federated States of Micronesia and its neighboring countries (Marshall Islands, Nauru, and Palau), focusing on various social and economic indicators to provide a comprehensive view of the region's overall development. Users can select different indicators for comparison through a drop-down menu."),
+             p("Notably, within this region, the Federated States of Micronesia boasts the highest GDP and the largest population. However, its GDP per capita does not stand out as particularly high. Its export figures are moderate, while its import expenditures are considerably higher. An intriguing point of contrast is that, although Micronesia has the lowest Human Development Index among these four nations, it surprisingly leads in terms of life expectancy."),
+             
              selectInput("indicatorType", "Select Indicator Type for Comparison", 
                          choices = c("Social Indicator", "Economic Indicator")),
              uiOutput("indicatorDisplay")
@@ -206,7 +209,28 @@ ui <- shinyUI(fluidPage(
                )
              )
     ),
-    tabPanel("Reference")
+    tabPanel("Reference",
+             div(
+               h3("References and Further Reading:"),
+               p(a("Wikipedia - Micronesia", href = "https://en.wikipedia.org/wiki/Micronesia", target = "_blank")),
+               p(a("Wikipedia - Federated States of Micronesia", href = "https://en.wikipedia.org/wiki/Federated_States_of_Micronesia#Culture", target = "_blank")),
+               p(a("Wikipedia - Palikir", href = "https://en.wikipedia.org/wiki/Palikir", target = "_blank")),
+               p(a("Wikipedia - Administrative divisions of the Federated States of Micronesia", href = "https://en.wikipedia.org/wiki/Administrative_divisions_of_the_Federated_States_of_Micronesia", target = "_blank")),
+               p(a("Wikipedia - Marshall Islands", href = "https://en.wikipedia.org/wiki/Marshall_Islands", target = "_blank")),
+               p(a("Wikipedia - Nauru", href = "https://en.wikipedia.org/wiki/Nauru", target = "_blank")),
+               p(a("Wikipedia - Palau", href = "https://en.wikipedia.org/wiki/Palau", target = "_blank")),
+               p(a("Simplemaps - Micronesia", href = "https://simplemaps.com/data/fm-cities", target = "_blank")),
+               p(a("UNData", href = "https://data.un.org", target = "_blank")),
+               p(a("World Bank Open Data", href = "https://data.worldbank.org/", target = "_blank")),
+               p(a("IMF DATA", href = "https://www.imf.org/en/Data", target = "_blank")),
+               p(a("Federated States of Micronesia - Spotlight shines brightly on “The Big Ocean State”", href = "https://statemag.state.gov/2021/07/0721pom/", target = "_blank")),
+               p(a("US Department of State - 2021 Investment Climate Statements: Micronesia", href = "https://www.state.gov/reports/2021-investment-climate-statements/micronesia/", target = "_blank")),
+               p(a("R for Data Science (2e)", href = "https://r4ds.hadley.nz/", target = "_blank")),
+               p(a("Mastering Shiny", href = "https://mastering-shiny.org/index.html", target = "_blank")),
+               p(a("How to Publish Shiny", href = "https://shiny.posit.co/r/getstarted/shiny-basics/lesson7/", target = "_blank")),
+               p("Lastly, I would like to extend my profound gratitude to GPT-4 for its invaluable assistance in debugging my work.")
+             )
+    )
   )
 ))
 
@@ -761,8 +785,6 @@ server <- function(input, output) {
       plots[[i]]
     })
   })
-  
-  # 其他标签页的逻辑可以在这里添加
   
                }
 
