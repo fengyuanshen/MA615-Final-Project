@@ -722,15 +722,20 @@ server <- function(input, output) {
   plot1 <- ggplot(economy, aes(x=Country, y=GDP, fill=Year)) +
     geom_bar(stat="identity", position=position_dodge()) +
     scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
-    geom_text(aes(label=GDP), vjust=-0.3, position=position_dodge(width=0.9), size=3.5) + 
+    geom_text(aes(label=GDP), vjust=-0.3, position=position_dodge(width=0.9), size=5) + 
     labs(
       title = "GDP Comparison", 
       x = "", y = "GDP (million current US$)"
     ) +
     theme_minimal() +
     theme(
-      plot.title = element_text(hjust = 0.5),
-      axis.text.x = element_text(angle = 0, hjust = 0.5)
+      plot.title = element_text(hjust = 0.5, size = 20),
+      axis.title.x = element_text(size = 16),
+      axis.title.y = element_text(size = 16),
+      axis.text.x = element_text(angle = 0, hjust = 0.5, size = 14),
+      axis.text.y = element_text(size = 14),
+      legend.title = element_text(size = 14),
+      legend.text = element_text(size = 12)
     )
   
   # GDP Per Capita Comparison
@@ -738,45 +743,60 @@ server <- function(input, output) {
     geom_bar(stat="identity", position=position_dodge()) +
     scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
     geom_text(aes(label=GDP_Per_Capita), position=position_dodge(width=0.9), 
-              vjust=0.5, hjust=1.2, size=3.5, angle=90, colour="white") +
+              vjust=0.5, hjust=1.2, size=4.5, angle=90, colour="white") +
     labs(
       title = "GDP Per Capita Comparison", 
       x = "", y = "GDP Per Capita (current US$)"
     ) +
     theme_minimal() +
     theme(
-      plot.title = element_text(hjust = 0.5),
-      axis.text.x = element_text(angle = 0, hjust = 0.5)
+      plot.title = element_text(hjust = 0.5, size = 20),
+      axis.title.x = element_text(size = 16),
+      axis.title.y = element_text(size = 16),
+      axis.text.x = element_text(angle = 0, hjust = 0.5, size = 14),
+      axis.text.y = element_text(size = 14),
+      legend.title = element_text(size = 14),
+      legend.text = element_text(size = 12)
     )
   
   # Imports Comparison
   plot3 <- ggplot(economy, aes(x=Country, y=Imports, fill=Year)) +
     geom_bar(stat="identity", position=position_dodge()) +
     scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
-    geom_text(aes(label=Imports), vjust=-0.3, position=position_dodge(width=0.9), size=3.5) + 
+    geom_text(aes(label=Imports), vjust=-0.3, position=position_dodge(width=0.9), size=5) + 
     labs(
       title = "Imports Comparison", 
       x = "", y = "Imports (million current US$)"
     ) +
     theme_minimal() +
     theme(
-      plot.title = element_text(hjust = 0.5),
-      axis.text.x = element_text(angle = 0, hjust = 0.5)
+      plot.title = element_text(hjust = 0.5, size = 20),
+      axis.title.x = element_text(size = 16),
+      axis.title.y = element_text(size = 16),
+      axis.text.x = element_text(angle = 0, hjust = 0.5, size = 14),
+      axis.text.y = element_text(size = 14),
+      legend.title = element_text(size = 14),
+      legend.text = element_text(size = 12)
     )
   
   # Exports Comparison
   plot4 <- ggplot(economy, aes(x=Country, y=Exports, fill=Year)) +
     geom_bar(stat="identity", position=position_dodge()) +
     scale_fill_manual(values = c("#D62828", "#F77F00", "#457B9D")) + 
-    geom_text(aes(label=Exports), vjust=-0.3, position=position_dodge(width=0.9), size=3.5) + 
+    geom_text(aes(label=Exports), vjust=-0.3, position=position_dodge(width=0.9), size=5) + 
     labs(
       title = "Exports Comparison", 
       x = "", y = "Exports (million current US$)"
     ) +
     theme_minimal() +
     theme(
-      plot.title = element_text(hjust = 0.5),
-      axis.text.x = element_text(angle = 0, hjust = 0.5)
+      plot.title = element_text(hjust = 0.5, size = 20),
+      axis.title.x = element_text(size = 16),
+      axis.title.y = element_text(size = 16),
+      axis.text.x = element_text(angle = 0, hjust = 0.5, size = 14),
+      axis.text.y = element_text(size = 14),
+      legend.title = element_text(size = 14),
+      legend.text = element_text(size = 12)
     )
   
   plots <- list(plot1, plot2, plot3, plot4)
