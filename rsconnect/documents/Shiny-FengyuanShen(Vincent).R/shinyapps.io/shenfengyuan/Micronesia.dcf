@@ -1,0 +1,13 @@
+name: Micronesia
+title: Micronesia
+username: shenfengyuan
+account: shenfengyuan
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10823425
+bundleId: 8063808
+url: https://shenfengyuan.shinyapps.io/Micronesia/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: assingmentList.csv|data/API_FSM_DS2_en_excel_v2_6266445.xls|data/Comparison of Islands.xlsx|data/Metadata_Country_API_FSM_DS2_en_csv_v2_6235080.csv|data/Metadata_Indicator_API_FSM_DS2_en_csv_v2_6235080.csv|Final-Project-Doc.pdf|LICENSE|MA615-Final-Project.html|MA615-Final-Project.qmd|README.md|pic

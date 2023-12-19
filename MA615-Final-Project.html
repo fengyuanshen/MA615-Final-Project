@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Fengyuan Shen (Vincent)">
+<meta name="dcterms.date" content="2023-12-15">
+
+<title>MA615-Final-Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="MA615-Final-Project_files/libs/clipboard/clipboard.min.js"></script>
+<script src="MA615-Final-Project_files/libs/quarto-html/quarto.js"></script>
+<script src="MA615-Final-Project_files/libs/quarto-html/popper.min.js"></script>
+<script src="MA615-Final-Project_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="MA615-Final-Project_files/libs/quarto-html/anchor.min.js"></script>
+<link href="MA615-Final-Project_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="MA615-Final-Project_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="MA615-Final-Project_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="MA615-Final-Project_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="MA615-Final-Project_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="MA615-Final-Project_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="MA615-Final-Project_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="MA615-Final-Project_files/libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="MA615-Final-Project_files/libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="MA615-Final-Project_files/libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="MA615-Final-Project_files/libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="MA615-Final-Project_files/libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="MA615-Final-Project_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="MA615-Final-Project_files/libs/leaflet-binding-2.2.1/leaflet.js"></script>
+<script src="MA615-Final-Project_files/libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="MA615-Final-Project_files/libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">MA615-Final-Project</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Fengyuan Shen (Vincent) </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 15, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="project-overview-an-in-depth-introduction" class="level3">
+<h3 class="anchored" data-anchor-id="project-overview-an-in-depth-introduction"><strong>Project Overview: An In-Depth Introduction</strong></h3>
+<p>This project aims to provide users with comprehensive information about the Federated States of Micronesia. It is structured into several key sections to facilitate a thorough understanding of the nation:</p>
+<section id="general-description" class="level4">
+<h4 class="anchored" data-anchor-id="general-description"><strong>General Description:</strong></h4>
+<p>This section offers insights into the geographical location, political landscape, economic status, historical development, culture, and surrounding environment of the Federated States of Micronesia. This foundational knowledge sets the stage for a deeper exploration of the nation.</p>
+</section>
+<section id="key-demographics" class="level4">
+<h4 class="anchored" data-anchor-id="key-demographics"><strong>Key Demographics:</strong></h4>
+<p>Here, the focus shifts to the demographic profile of Micronesia. This includes detailed information on population composition, growth trends, gender ratios, and life expectancy, offering a clear picture of the nation’s social structure.</p>
+</section>
+<section id="comparison-with-other-regional-island-states" class="level4">
+<h4 class="anchored" data-anchor-id="comparison-with-other-regional-island-states"><strong>Comparison with Other Regional Island States:</strong></h4>
+<p>In this segment, the Federated States of Micronesia is compared with neighboring countries such as the Marshall Islands, Nauru, and Palau. This comparison is based on social and economic indicators, providing a regional perspective and highlighting the relative development of these island nations.</p>
+</section>
+<section id="swot-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="swot-analysis"><strong>SWOT Analysis:</strong></h4>
+<p>The final section presents a SWOT analysis, examining the strengths, weaknesses, opportunities, and potential threats related to the Federated States of Micronesia. This analysis aims to offer a balanced view of the nation’s current status and prospects for future development.</p>
+</section>
+</section>
+<section id="backgroud-information-of-micronesia-fed.-sts." class="level3">
+<h3 class="anchored" data-anchor-id="backgroud-information-of-micronesia-fed.-sts."><strong>Backgroud Information of Micronesia, Fed. Sts.</strong></h3>
+<p>The Federated States of Micronesia (FSM), also known as Micronesia, is an island country in the Pacific Ocean’s Micronesia subregion. It consists of four states - Yap, Chuuk, Pohnpei, and Kosrae - spanning about 607 islands across 2,700 km near the equator. These islands are situated northeast of Indonesia and Papua New Guinea, and south of Guam. Although the FSM’s land area is only about 702 km², its marine territory covers nearly 3 million km², ranking it 14th in the world for its exclusive economic zone.</p>
+<p>Palikir on Pohnpei Island is the capital, while Weno in Chuuk is the largest city. Each state centers around volcanic islands, with many outlying atolls, especially in the Caroline Islands region. The term ‘Micronesia’ often refers to either the FSM or the broader region comprising several countries.</p>
+<p>Formerly under U.S. administration as part of the Trust Territory of the Pacific Islands, FSM gained sovereignty on November 3, 1986, through a Compact of Free Association with the U.S., after establishing its constitution on May 10, 1979. It’s a United Nations member and part of the Pacific Community since 1983.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic/introduction.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="general-description-1" class="level2">
+<h2 class="anchored" data-anchor-id="general-description-1">General Description</h2>
+<section id="map-of-the-island-state" class="level3">
+<h3 class="anchored" data-anchor-id="map-of-the-island-state">Map of the Island State</h3>
+<p>This map provides a detailed view of the Federated States of Micronesia, highlighting its four states - Pohnpei, Chuuk, Kosrae, and Yap.</p>
+<section id="pohnpei" class="level4">
+<h4 class="anchored" data-anchor-id="pohnpei">Pohnpei</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-e030f420beb958723051" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-e030f420beb958723051">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[6.8874,158.215,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"State: Pohnpei<br>State Capital: Kolonia<br>Administrative Capital: Palikir",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[6.8874,158.215,{"iconUrl":{"data":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=","index":0},"iconWidth":1,"iconHeight":1},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"State: Pohnpei, Administrative Capital: Palikir",{"interactive":false,"permanent":true,"direction":"auto","opacity":1,"offset":[-100,-10],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[6.8874,158.215],11,[]],"limits":{"lat":[6.8874,6.8874],"lng":[158.215,158.215]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="chuuk" class="level4">
+<h4 class="anchored" data-anchor-id="chuuk">Chuuk</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-c2c46dc5b406486601dd" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-c2c46dc5b406486601dd">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[7.45,151.85,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"State: Chuuk<br>Capital: Weno",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[7.45,151.85,{"iconUrl":{"data":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=","index":0},"iconWidth":1,"iconHeight":1},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"State: Chuuk, Capital: Weno",{"interactive":false,"permanent":true,"direction":"auto","opacity":1,"offset":[-20,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[7.45,151.85],11,[]],"limits":{"lat":[7.45,7.45],"lng":[151.85,151.85]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="kosrae" class="level4">
+<h4 class="anchored" data-anchor-id="kosrae">Kosrae</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-95cd5d0189311ee0388d" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-95cd5d0189311ee0388d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[5.3258,163.0086,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"State: Kosrae<br>Capital: Tofol",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[5.3258,163.0086,{"iconUrl":{"data":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=","index":0},"iconWidth":1,"iconHeight":1},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"State: Kosrae, Capital: Tofol",{"interactive":false,"permanent":true,"direction":"right","opacity":1,"offset":[40,-10],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[5.3258,163.0086],11,[]],"limits":{"lat":[5.3258,5.3258],"lng":[163.0086,163.0086]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="yap" class="level4">
+<h4 class="anchored" data-anchor-id="yap">Yap</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-43143808eb2f7144bfe1" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-43143808eb2f7144bfe1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[9.5167,138.1333,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"State: Yap<br>Capital: Colonia",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[9.5167,138.1333,{"iconUrl":{"data":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=","index":0},"iconWidth":1,"iconHeight":1},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"State: Yap, Capital: Colonia",{"interactive":false,"permanent":true,"direction":"auto","opacity":1,"offset":[-90,-10],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[9.5167,138.1333],11,[]],"limits":{"lat":[9.5167,9.5167],"lng":[138.1333,138.1333]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+</section>
+<section id="world-map-highlighting-the-island-states-location" class="level3">
+<h3 class="anchored" data-anchor-id="world-map-highlighting-the-island-states-location">World Map Highlighting the Island State’s Location</h3>
+<p>This detailed map provides a clear visualization of the geographical positions of the four states - Pohnpei, Chuuk, Kosrae, and Yap - on the global landscape. Each state is distinctly color-coded for easy identification: Pohnpei in vibrant red, Chuuk in a deep blue, Kosrae in a lush green, and Yap in a bright yellow.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-a5bf590abc3a1f718b4e" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a5bf590abc3a1f718b4e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.NatGeoWorldMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircles","args":[6.8874,158.215,650000,null,null,{"interactive":true,"className":"","stroke":true,"color":"#D90429","weight":2,"opacity":0.5,"fill":true,"fillColor":"#D90429","fillOpacity":0.7,"dashArray":"5, 5"},"Pohnpei",null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addCircles","args":[7.45,151.85,550000,null,null,{"interactive":true,"className":"","stroke":true,"color":"#134074","weight":2,"opacity":0.5,"fill":true,"fillColor":"#134074","fillOpacity":0.7,"dashArray":"5, 5"},"Chuuk",null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addCircles","args":[5.3258,163.0086,450000,null,null,{"interactive":true,"className":"","stroke":true,"color":"#386641","weight":2,"opacity":0.5,"fill":true,"fillColor":"#386641","fillOpacity":0.7,"dashArray":"5, 5"},"Kosrae",null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addCircles","args":[9.5167,138.1333,500000,null,null,{"interactive":true,"className":"","stroke":true,"color":"#F9C80E","weight":2,"opacity":0.5,"fill":true,"fillColor":"#F9C80E","fillOpacity":0.7,"dashArray":"5, 5"},"Yap",null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]}],"setView":[[7.45,151.85],3,[]],"limits":{"lat":[5.3258,9.5167],"lng":[138.1333,163.0086]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="economic-characteristics-of-the-island-state" class="level3">
+<h3 class="anchored" data-anchor-id="economic-characteristics-of-the-island-state">Economic Characteristics of the Island State</h3>
+<p>This section primarily explores the economic status of the Federated States of Micronesia. Users can engage with an array of charts depicting various economic indicators, such as GDP and its growth rate, per capita GDP, and import-export values.</p>
+<section id="gdp" class="level4">
+<h4 class="anchored" data-anchor-id="gdp">GDP</h4>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="gdp-per-capita" class="level4">
+<h4 class="anchored" data-anchor-id="gdp-per-capita">GDP Per Capita</h4>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="export-and-import" class="level4">
+<h4 class="anchored" data-anchor-id="export-and-import">Export and Import</h4>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="overview-of-political-social-cultural-and-other-aspects" class="level3">
+<h3 class="anchored" data-anchor-id="overview-of-political-social-cultural-and-other-aspects">Overview of Political, Social, Cultural, and Other Aspects</h3>
+<p>This section will offer a brief overview of additional relevant information pertaining to the Federated States of Micronesia:</p>
+<section id="politics" class="level4">
+<h4 class="anchored" data-anchor-id="politics"><strong>Politics</strong></h4>
+<p>Gained independence from US-administered Trust Territory of the Pacific Islands in 1986. It’s a democratic nation with a Compact of Free Association with the United States.</p>
+</section>
+<section id="economy" class="level4">
+<h4 class="anchored" data-anchor-id="economy"><strong>Economy</strong></h4>
+<p>Relies on subsistence farming, fishing, and US financial aid. Limited natural resources; potential for tourism development is hindered by remoteness.</p>
+</section>
+<section id="history" class="level4">
+<h4 class="anchored" data-anchor-id="history"><strong>History</strong></h4>
+<p>Inhabited for over 4,000 years; influenced by Spanish, German, and Japanese rule. Significant World War II site.</p>
+</section>
+<section id="population-and-culture" class="level4">
+<h4 class="anchored" data-anchor-id="population-and-culture"><strong>Population and Culture</strong></h4>
+<p>Predominantly Micronesian population, with diverse ethnolinguistic groups. Rich in traditions and customs, with notable sites like Yap’s Rai stones and Pohnpei’s Nan Madol ruins.</p>
+</section>
+<section id="environment" class="level4">
+<h4 class="anchored" data-anchor-id="environment"><strong>Environment</strong></h4>
+<p>Tropical rainforest climate, characterized by high rainfall, lush landscapes, and unique ecosystems.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic/overview1.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic/overview2.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="key-demographics-1" class="level2">
+<h2 class="anchored" data-anchor-id="key-demographics-1">Key Demographics</h2>
+<section id="population-and-its-growth-rate" class="level3">
+<h3 class="anchored" data-anchor-id="population-and-its-growth-rate">Population and its Growth Rate</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="demographic-composition" class="level3">
+<h3 class="anchored" data-anchor-id="demographic-composition">Demographic Composition</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="male-vs-female" class="level3">
+<h3 class="anchored" data-anchor-id="male-vs-female">Male vs Female</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="life-expectancy" class="level3">
+<h3 class="anchored" data-anchor-id="life-expectancy">Life expectancy</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="comparison-with-other-regional-island-states-1" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-with-other-regional-island-states-1">Comparison with Other Regional Island States</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="aquazysqrc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aquazysqrc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#aquazysqrc thead, #aquazysqrc tbody, #aquazysqrc tfoot, #aquazysqrc tr, #aquazysqrc td, #aquazysqrc th {
+  border-style: none;
+}
+
+#aquazysqrc p {
+  margin: 0;
+  padding: 0;
+}
+
+#aquazysqrc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#aquazysqrc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#aquazysqrc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#aquazysqrc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#aquazysqrc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#aquazysqrc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#aquazysqrc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#aquazysqrc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#aquazysqrc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#aquazysqrc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#aquazysqrc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#aquazysqrc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#aquazysqrc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#aquazysqrc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#aquazysqrc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aquazysqrc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#aquazysqrc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#aquazysqrc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#aquazysqrc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aquazysqrc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#aquazysqrc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aquazysqrc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#aquazysqrc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aquazysqrc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aquazysqrc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aquazysqrc .gt_left {
+  text-align: left;
+}
+
+#aquazysqrc .gt_center {
+  text-align: center;
+}
+
+#aquazysqrc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#aquazysqrc .gt_font_normal {
+  font-weight: normal;
+}
+
+#aquazysqrc .gt_font_bold {
+  font-weight: bold;
+}
+
+#aquazysqrc .gt_font_italic {
+  font-style: italic;
+}
+
+#aquazysqrc .gt_super {
+  font-size: 65%;
+}
+
+#aquazysqrc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#aquazysqrc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#aquazysqrc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#aquazysqrc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#aquazysqrc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#aquazysqrc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#aquazysqrc .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:170px;">
+    <col style="width:100px;">
+    <col style="width:170px;">
+    <col style="width:170px;">
+    <col style="width:110px;">
+    <col style="width:200px;">
+    <col style="width:160px;">
+    <col style="width:130px;">
+    <col style="width:170px;">
+    <col style="width:100px;">
+    <col style="width:100px;">
+  </colgroup>
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="11" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Regional Island States: A Comparison of Social Indicators</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Country">Country</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Population (2022)">Population (2022)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Population growth (annual %, 2022)">Population growth (annual %, 2022)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Pop. density (per km^2, 2021)">Pop. density (per km^2, 2021)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Net migration (2021)">Net migration (2021)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Life Expectancy at Birth, Total (years, 2021)">Life Expectancy at Birth, Total (years, 2021)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Sex ratio (male per 100 female, 2022)">Sex ratio (male per 100 female, 2022)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Surface Area (km^2)">Surface Area (km^2)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Human Development Index (2021)">Human Development Index (2021)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Capital City">Capital City</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Currency">Currency</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Country" class="gt_row gt_left" style="text-align: center;">Micronesia, Fed. Sts.</td>
+<td headers="Population" class="gt_row gt_right" style="text-align: center;">114164</td>
+<td headers="PopulationGrowth" class="gt_row gt_right" style="text-align: center;">0.9</td>
+<td headers="PopDensity" class="gt_row gt_right" style="text-align: center;">166.1</td>
+<td headers="NetMigration" class="gt_row gt_right" style="text-align: center;">-635</td>
+<td headers="LifeExpectancy" class="gt_row gt_right" style="text-align: center;">71</td>
+<td headers="SexRatio" class="gt_row gt_right" style="text-align: center;">103.4</td>
+<td headers="SurfaceArea" class="gt_row gt_right" style="text-align: center;">702</td>
+<td headers="HumanDevelopmentIndex" class="gt_row gt_right" style="text-align: center;">0.628</td>
+<td headers="CapitalCity" class="gt_row gt_left" style="text-align: center;">Palikir</td>
+<td headers="Currency" class="gt_row gt_left" style="text-align: center;">USD</td></tr>
+    <tr><td headers="Country" class="gt_row gt_left gt_striped" style="text-align: center;">Marshall Islands</td>
+<td headers="Population" class="gt_row gt_right gt_striped" style="text-align: center;">41569</td>
+<td headers="PopulationGrowth" class="gt_row gt_right gt_striped" style="text-align: center;">-1.2</td>
+<td headers="PopDensity" class="gt_row gt_right gt_striped" style="text-align: center;">331.2</td>
+<td headers="NetMigration" class="gt_row gt_right gt_striped" style="text-align: center;">-1901</td>
+<td headers="LifeExpectancy" class="gt_row gt_right gt_striped" style="text-align: center;">65</td>
+<td headers="SexRatio" class="gt_row gt_right gt_striped" style="text-align: center;">104.0</td>
+<td headers="SurfaceArea" class="gt_row gt_right gt_striped" style="text-align: center;">181</td>
+<td headers="HumanDevelopmentIndex" class="gt_row gt_right gt_striped" style="text-align: center;">0.639</td>
+<td headers="CapitalCity" class="gt_row gt_left gt_striped" style="text-align: center;">Majuro</td>
+<td headers="Currency" class="gt_row gt_left gt_striped" style="text-align: center;">USD</td></tr>
+    <tr><td headers="Country" class="gt_row gt_left" style="text-align: center;">Nauru</td>
+<td headers="Population" class="gt_row gt_right" style="text-align: center;">12668</td>
+<td headers="PopulationGrowth" class="gt_row gt_right" style="text-align: center;">1.2</td>
+<td headers="PopDensity" class="gt_row gt_right" style="text-align: center;">543.6</td>
+<td headers="NetMigration" class="gt_row gt_right" style="text-align: center;">-66</td>
+<td headers="LifeExpectancy" class="gt_row gt_right" style="text-align: center;">64</td>
+<td headers="SexRatio" class="gt_row gt_right" style="text-align: center;">101.8</td>
+<td headers="SurfaceArea" class="gt_row gt_right" style="text-align: center;">21</td>
+<td headers="HumanDevelopmentIndex" class="gt_row gt_right" style="text-align: center;">0.720</td>
+<td headers="CapitalCity" class="gt_row gt_left" style="text-align: center;">Yaren</td>
+<td headers="Currency" class="gt_row gt_left" style="text-align: center;">AUD</td></tr>
+    <tr><td headers="Country" class="gt_row gt_left gt_striped" style="text-align: center;">Palau</td>
+<td headers="Population" class="gt_row gt_right gt_striped" style="text-align: center;">18055</td>
+<td headers="PopulationGrowth" class="gt_row gt_right gt_striped" style="text-align: center;">0.2</td>
+<td headers="PopDensity" class="gt_row gt_right gt_striped" style="text-align: center;">39.5</td>
+<td headers="NetMigration" class="gt_row gt_right gt_striped" style="text-align: center;">3</td>
+<td headers="LifeExpectancy" class="gt_row gt_right gt_striped" style="text-align: center;">69</td>
+<td headers="SexRatio" class="gt_row gt_right gt_striped" style="text-align: center;">106.0</td>
+<td headers="SurfaceArea" class="gt_row gt_right gt_striped" style="text-align: center;">459</td>
+<td headers="HumanDevelopmentIndex" class="gt_row gt_right gt_striped" style="text-align: center;">0.767</td>
+<td headers="CapitalCity" class="gt_row gt_left gt_striped" style="text-align: center;">Ngerulmud</td>
+<td headers="Currency" class="gt_row gt_left gt_striped" style="text-align: center;">USD</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="MA615-Final-Project_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="swot-analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="swot-analysis-1">SWOT Analysis</h2>
+<p><strong>Strengths:</strong></p>
+<ol type="1">
+<li><p>Strategic Location: Situated in the Western Pacific Ocean, Micronesia’s extensive exclusive economic zone offers significant marine resources.</p></li>
+<li><p>U.S. Support: The Compact of Free Association with the United States provides substantial financial aid and development support.</p></li>
+<li><p>Natural Resources: The primary economic sector is commercial fishing, with significant income from fishing rights sales and offshore corporate registrations for captive insurance.</p></li>
+<li><p>Low Debt Levels: FSM has a relatively low government debt-to-GDP ratio, indicating financial stability.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic/strengths.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Weaknesses:</strong></p>
+<ol type="1">
+<li><p>Economic Dependence: Heavy reliance on U.S. funding and grants, with a need to diversify economic sources.</p></li>
+<li><p>Limited Foreign Investment: Restrictions on foreign ownership and challenges in registering businesses deter foreign direct investment.</p></li>
+<li><p>Weak Infrastructure: Poor infrastructure and high costs of imported goods and services hamper economic growth.</p></li>
+<li><p>Subsistence Economy: Apart from a few urban centers, most of the economy is subsistence-based, limiting commercial activity.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic/weaknesses.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Opportunities:</strong></p>
+<ol type="1">
+<li><p>Economic Diversification: Opportunities to diversify the economy beyond fishing and government employment.</p></li>
+<li><p>Tourism Potential: Natural beauty and unique culture offer potential for eco-tourism development.</p></li>
+<li><p>Trust Fund Utilization: Transitioning to using proceeds from a trust fund developed from U.S. contributions for development.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic/opportunities.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Threats:</strong></p>
+<ol type="1">
+<li><p>Reduction in Compact Funding: The shift in Compact funding methodology in 2023 poses financial challenges.</p></li>
+<li><p>Political Instability: Lack of political parties and potential for instability could affect economic decisions.</p></li>
+<li><p>Environmental Risks: As an island nation, Micronesia faces significant risks from climate change and natural disasters.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic/threats.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<p><a href="https://en.wikipedia.org/wiki/Micronesia">Wikipedia - Micronesia</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Federated_States_of_Micronesia#Culture">Wikipedia - Federated States of Micronesia</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Palikir">Wikipedia - Palikir</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Administrative_divisions_of_the_Federated_States_of_Micronesia">Wikipedia - Administrative divisions of the Federated States of Micronesia</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Marshall_Islands">Wikipedia - Marshall Islands</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Nauru">Wikipedia - Nauru</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Palau">Wikipedia - Palau</a></p>
+<p><a href="https://simplemaps.com/data/fm-cities">Simplemaps - Micronesia</a></p>
+<p><a href="https://data.un.org/">UNData</a></p>
+<p><a href="https://data.worldbank.org/">World Bank Open Data</a></p>
+<p><a href="https://www.imf.org/en/Data">IMF DATA</a></p>
+<p><a href="https://statemag.state.gov/2021/07/0721pom/">Federated States of Micronesia - Spotlight shines brightly on "The Big Ocean State"</a></p>
+<p><a href="https://www.state.gov/reports/2021-investment-climate-statements/micronesia/">US Department of State - 2021 Investment Climate Statements: Micronesia</a></p>
+<p><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a></p>
+<p><a href="https://mastering-shiny.org/index.html">Mastering Shiny</a></p>
+<p><a href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson7/">How to Publish Shiny</a></p>
+<p>Lastly, I would like to extend my profound gratitude to GPT-4 for its invaluable assistance in debugging my work.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

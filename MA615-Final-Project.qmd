@@ -8,13 +8,37 @@ editor: visual
 
 ## Introduction
 
+### **Project Overview: An In-Depth Introduction**
+
+This project aims to provide users with comprehensive information about the Federated States of Micronesia. It is structured into several key sections to facilitate a thorough understanding of the nation:
+
+#### **General Description:**
+
+This section offers insights into the geographical location, political landscape, economic status, historical development, culture, and surrounding environment of the Federated States of Micronesia. This foundational knowledge sets the stage for a deeper exploration of the nation.
+
+#### **Key Demographics:**
+
+Here, the focus shifts to the demographic profile of Micronesia. This includes detailed information on population composition, growth trends, gender ratios, and life expectancy, offering a clear picture of the nation's social structure.
+
+#### **Comparison with Other Regional Island States:**
+
+In this segment, the Federated States of Micronesia is compared with neighboring countries such as the Marshall Islands, Nauru, and Palau. This comparison is based on social and economic indicators, providing a regional perspective and highlighting the relative development of these island nations.
+
+#### **SWOT Analysis:**
+
+The final section presents a SWOT analysis, examining the strengths, weaknesses, opportunities, and potential threats related to the Federated States of Micronesia. This analysis aims to offer a balanced view of the nation's current status and prospects for future development.
+
+### **Backgroud Information of Micronesia, Fed. Sts.**
+
 The Federated States of Micronesia (FSM), also known as Micronesia, is an island country in the Pacific Ocean's Micronesia subregion. It consists of four states - Yap, Chuuk, Pohnpei, and Kosrae - spanning about 607 islands across 2,700 km near the equator. These islands are situated northeast of Indonesia and Papua New Guinea, and south of Guam. Although the FSM's land area is only about 702 km², its marine territory covers nearly 3 million km², ranking it 14th in the world for its exclusive economic zone.
 
 Palikir on Pohnpei Island is the capital, while Weno in Chuuk is the largest city. Each state centers around volcanic islands, with many outlying atolls, especially in the Caroline Islands region. The term 'Micronesia' often refers to either the FSM or the broader region comprising several countries.
 
 Formerly under U.S. administration as part of the Trust Territory of the Pacific Islands, FSM gained sovereignty on November 3, 1986, through a Compact of Free Association with the U.S., after establishing its constitution on May 10, 1979. It's a United Nations member and part of the Pacific Community since 1983.
 
-```{r echo=FALSE}
+![](pic/introduction.jpg){fig-align="center"}
+
+```{r echo=FALSE,message=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(shiny)
@@ -26,7 +50,7 @@ library(gt)
 library(gtExtras)
 ```
 
-```{r}
+```{r echo=FALSE,warning=FALSE,message=FALSE}
 # Read the CSV file and skip the first 4 lines
 micronesia_data <- read_csv("data/API_FSM_DS2_en_csv_v2_6235080.csv", skip = 4)
 ```
@@ -35,9 +59,11 @@ micronesia_data <- read_csv("data/API_FSM_DS2_en_csv_v2_6235080.csv", skip = 4)
 
 ### Map of the Island State
 
+This map provides a detailed view of the Federated States of Micronesia, highlighting its four states - Pohnpei, Chuuk, Kosrae, and Yap.
+
 #### Pohnpei
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # Set the coordinates
 micronesia_Pohnpei <- c(6.8874, 158.2150)
 
@@ -62,7 +88,7 @@ micronesia_Pohnpei_map
 
 #### Chuuk
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # Set the coordinates
 micronesia_Chuuk <- c(7.4500, 151.8500)
 
@@ -87,7 +113,7 @@ micronesia_Chuuk_map
 
 #### Kosrae
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # Set the coordinates
 micronesia_Kosrae <- c(5.3258, 163.0086)
 
@@ -112,7 +138,7 @@ micronesia_Kosrae_map
 
 #### Yap
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # Set the coordinates
 micronesia_Yap <- c(9.5167, 138.1333)
 
@@ -135,11 +161,11 @@ micronesia_Yap_map <- leaflet() |>
 micronesia_Yap_map
 ```
 
-Palikir is the capital city of the Federated States of Micronesia located in the western Pacific Ocean. A town of slightly under 5,000 residents, it is part of the larger Sokehs municipality, which had a population of 6,647 as of 2010, out of the nation's total population of 106,487. It is situated on the northwest side of Pohnpei island (population 34,789), a high volcanic island surrounded by a fringing coral reef. Nearby to the northeast is the island's largest settlement, the coastal town of Kolonia. It was declared the capital of Micronesia in 1989.
-
 ### World Map Highlighting the Island State's Location
 
-```{r}
+This detailed map provides a clear visualization of the geographical positions of the four states - Pohnpei, Chuuk, Kosrae, and Yap - on the global landscape. Each state is distinctly color-coded for easy identification: Pohnpei in vibrant red, Chuuk in a deep blue, Kosrae in a lush green, and Yap in a bright yellow.
+
+```{r echo=FALSE,warning=FALSE}
 # Set the coordinates
 micronesia_Pohnpei <- c(6.8874, 158.2150)
 micronesia_Chuuk <- c(7.4500, 151.8500)
@@ -172,7 +198,9 @@ micronesia_map_world
 
 ### Economic Characteristics of the Island State
 
-```{r}
+This section primarily explores the economic status of the Federated States of Micronesia. Users can engage with an array of charts depicting various economic indicators, such as GDP and its growth rate, per capita GDP, and import-export values.
+
+```{r echo=FALSE,warning=FALSE}
 # A list of selected indicators
 selected_indicators <- c('GDP (current US$)', 'GDP growth (annual %)', 
                          'GDP per capita (current US$)', 
@@ -198,7 +226,7 @@ long_data <- filtered_data |>
 
 #### GDP
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 gdp_growth_data <- long_data |> 
                    filter(`Indicator Name` %in% c('GDP (current US$)', 
                                                   'GDP growth (annual %)'))
@@ -230,7 +258,7 @@ ggplot(data = gdp_growth_data, aes(x = Year)) +
 
 #### GDP Per Capita
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 gdp_per_capita_data <- long_data |> 
                       filter(`Indicator Name` %in% c('GDP per capita (current US$)', 
                                                      'GDP per capita growth (annual %)'))
@@ -263,7 +291,7 @@ ggplot(data = gdp_per_capita_data, aes(x = Year)) +
 
 #### Export and Import
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 trade_data <- long_data |> 
               filter(`Indicator Name` %in% c('Imports of goods and services (current US$)',
                                              'Exports of goods and services (current US$)'))
@@ -286,21 +314,37 @@ ggplot(trade_data, aes(x = Year, y = Value / 10^6, fill = `Indicator Name`)) +
 
 ### Overview of Political, Social, Cultural, and Other Aspects
 
-**Politics**: Gained independence from US-administered Trust Territory of the Pacific Islands in 1986. It's a democratic nation with a Compact of Free Association with the United States.
+This section will offer a brief overview of additional relevant information pertaining to the Federated States of Micronesia:
 
-**Economy**: Relies on subsistence farming, fishing, and US financial aid. Limited natural resources; potential for tourism development is hindered by remoteness.
+#### **Politics**
 
-**History**: Inhabited for over 4,000 years; influenced by Spanish, German, and Japanese rule. Significant World War II site.
+Gained independence from US-administered Trust Territory of the Pacific Islands in 1986. It's a democratic nation with a Compact of Free Association with the United States.
 
-**Population and Culture**: Predominantly Micronesian population, with diverse ethnolinguistic groups. Rich in traditions and customs, with notable sites like Yap's Rai stones and Pohnpei's Nan Madol ruins.
+#### **Economy**
 
-**Environment**: Tropical rainforest climate, characterized by high rainfall, lush landscapes, and unique ecosystems.
+Relies on subsistence farming, fishing, and US financial aid. Limited natural resources; potential for tourism development is hindered by remoteness.
+
+#### **History**
+
+Inhabited for over 4,000 years; influenced by Spanish, German, and Japanese rule. Significant World War II site.
+
+#### **Population and Culture**
+
+Predominantly Micronesian population, with diverse ethnolinguistic groups. Rich in traditions and customs, with notable sites like Yap's Rai stones and Pohnpei's Nan Madol ruins.
+
+#### **Environment**
+
+Tropical rainforest climate, characterized by high rainfall, lush landscapes, and unique ecosystems.
+
+![](pic/overview1.jpg){fig-align="center"}
+
+![](pic/overview2.jpg){fig-align="center"}
 
 ## Key Demographics
 
 ### Population and its Growth Rate
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 population_data <- long_data |> 
                    filter(`Indicator Name` %in% c('Population, total', 
                                                   'Population growth (annual %)'))
@@ -331,7 +375,7 @@ ggplot(data = population_data, aes(x = Year)) +
 
 ### Demographic Composition
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # Create a demographic dataframe
 composition_data <- data.frame(
   Group = c("Chuukese", "Pohnpeian", "Kosraean", "Yapese", 
@@ -359,7 +403,7 @@ ggplot(composition_data, aes(area = Percentage, fill = Group, label = Label)) +
 
 ### Male vs Female
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 proportion_data <- long_data |> 
                    filter(`Indicator Name` %in% c('Population, female (% of total population)', 'Population, male (% of total population)'))
 
@@ -380,7 +424,7 @@ ggplot(proportion_data, aes(x = Year, y = Value , fill = `Indicator Name`)) +
 
 ### Life expectancy
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 life_expectancy_data <- long_data |> 
                    filter(`Indicator Name` %in% 'Life expectancy at birth, total (years)')
 
@@ -400,7 +444,7 @@ ggplot(life_expectancy_data, aes(x = Year, y = Value)) +
 
 ## Comparison with Other Regional Island States
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # Create dataframe
 country_data <- data.frame(
   Country = c("Micronesia, Fed. Sts.", "Marshall Islands", "Nauru", "Palau"),
@@ -462,12 +506,12 @@ gt_table <- gt(data = country_data) |>
 gt_table
 ```
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 flags <- c("flags/Federated_States_of_Micronesia.png", 
            "flags/Marshall_Islands.png", "flags/Nauru.png", "flags/Palau.png")
 ```
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # Create dataframe
 countries <- c("Micronesia", "Marshall Islands", "Nauru", "Palau")
 economy <- data.frame(
@@ -481,7 +525,7 @@ economy <- data.frame(
 )
 ```
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # GDP Comparison
 plot1 <- ggplot(economy, aes(x=Country, y=GDP, fill=Year)) +
   geom_bar(stat="identity", position=position_dodge()) +
@@ -500,7 +544,7 @@ plot1 <- ggplot(economy, aes(x=Country, y=GDP, fill=Year)) +
 plot1
 ```
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # GDP Per Capita Comparison
 plot2 <- ggplot(economy, aes(x=Country, y=GDP_Per_Capita, fill=Year)) +
   geom_bar(stat="identity", position=position_dodge()) +
@@ -520,7 +564,7 @@ plot2 <- ggplot(economy, aes(x=Country, y=GDP_Per_Capita, fill=Year)) +
 plot2
 ```
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # Imports Comparison
 plot3 <- ggplot(economy, aes(x=Country, y=Imports, fill=Year)) +
   geom_bar(stat="identity", position=position_dodge()) +
@@ -539,7 +583,7 @@ plot3 <- ggplot(economy, aes(x=Country, y=Imports, fill=Year)) +
 plot3
 ```
 
-```{r}
+```{r echo=FALSE,warning=FALSE}
 # Exports Comparison
 plot4 <- ggplot(economy, aes(x=Country, y=Exports, fill=Year)) +
   geom_bar(stat="identity", position=position_dodge()) +
@@ -570,6 +614,8 @@ plot4
 
 4.  Low Debt Levels: FSM has a relatively low government debt-to-GDP ratio, indicating financial stability.
 
+![](pic/strengths.jpg){fig-align="center"}
+
 **Weaknesses:**
 
 1.  Economic Dependence: Heavy reliance on U.S. funding and grants, with a need to diversify economic sources.
@@ -580,6 +626,8 @@ plot4
 
 4.  Subsistence Economy: Apart from a few urban centers, most of the economy is subsistence-based, limiting commercial activity.
 
+![](pic/weaknesses.jpg){fig-align="center"}
+
 **Opportunities:**
 
 1.  Economic Diversification: Opportunities to diversify the economy beyond fishing and government employment.
@@ -587,6 +635,8 @@ plot4
 2.  Tourism Potential: Natural beauty and unique culture offer potential for eco-tourism development.
 
 3.  Trust Fund Utilization: Transitioning to using proceeds from a trust fund developed from U.S. contributions for development.
+
+![](pic/opportunities.jpg){fig-align="center"}
 
 **Threats:**
 
@@ -596,4 +646,40 @@ plot4
 
 3.  Environmental Risks: As an island nation, Micronesia faces significant risks from climate change and natural disasters.
 
+![](pic/threats.jpg){fig-align="center"}
+
 ## Reference
+
+[Wikipedia - Micronesia](https://en.wikipedia.org/wiki/Micronesia)
+
+[Wikipedia - Federated States of Micronesia](https://en.wikipedia.org/wiki/Federated_States_of_Micronesia#Culture)
+
+[Wikipedia - Palikir](https://en.wikipedia.org/wiki/Palikir)
+
+[Wikipedia - Administrative divisions of the Federated States of Micronesia](https://en.wikipedia.org/wiki/Administrative_divisions_of_the_Federated_States_of_Micronesia)
+
+[Wikipedia - Marshall Islands](https://en.wikipedia.org/wiki/Marshall_Islands)
+
+[Wikipedia - Nauru](https://en.wikipedia.org/wiki/Nauru)
+
+[Wikipedia - Palau](https://en.wikipedia.org/wiki/Palau)
+
+[Simplemaps - Micronesia](https://simplemaps.com/data/fm-cities)
+
+[UNData](https://data.un.org/)
+
+[World Bank Open Data](https://data.worldbank.org/)
+
+[IMF DATA](https://www.imf.org/en/Data)
+
+[Federated States of Micronesia - Spotlight shines brightly on \"The Big Ocean State\"](https://statemag.state.gov/2021/07/0721pom/)
+
+[US Department of State - 2021 Investment Climate Statements: Micronesia](https://www.state.gov/reports/2021-investment-climate-statements/micronesia/)
+
+[R for Data Science (2e)](https://r4ds.hadley.nz/)
+
+[Mastering Shiny](https://mastering-shiny.org/index.html)
+
+[How to Publish Shiny](https://shiny.posit.co/r/getstarted/shiny-basics/lesson7/)
+
+Lastly, I would like to extend my profound gratitude to GPT-4 for its invaluable assistance in debugging my work.
